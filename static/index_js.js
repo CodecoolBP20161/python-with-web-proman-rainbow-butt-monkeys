@@ -6,21 +6,32 @@ function Board(name){
     this.name = name;
 }
 
-var myStorage = function (){
-    this.boards = [];
+// var myStorage = function () {};
+//
+// //noinspection JSAnnotator
+// myStorage.saveBoard() = {};
+// //noinspection JSAnnotator
+// myStorage.getBoard() = {};
+// //noinspection JSAnnotator
+// myStorage.implement() = {};
+
+var Boards = [];
+
+var myLocalStorage = function () {};
+
+myLocalStorage.saveToLocal = function (board){
+    // window.localStorage.clear();
+    var oldItems = [];
+    oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
+    console.log(board, oldItems);
+    oldItems.push(board);
+    localStorage.setItem('Boards', JSON.stringify(oldItems));
+    displayBoard(myLocalStorage.retrieve());
 };
 
-//noinspection JSAnnotator
-myStorage.saveBoard() = {};
-//noinspection JSAnnotator
-myStorage.getBoard() = {};
-//noinspection JSAnnotator
-myStorage.implement() = {};
-
-
-myLocalStorage.saveBoard = function() {
-
- };
+myLocalStorage.retrieve = function () {
+    return JSON.parse(localStorage.getItem("Boards"));
+};
 
 function handleNewBoardName() {
     $('#myModal').modal('toggle');
@@ -41,17 +52,21 @@ function displayBoard(board) {
 
 }
 
-function eventHandler(){
-    var new_board = handleNewBoardName();
-    displayBoard(new_board);
+function boardLister() {
+    var boards = myLocalStorage.retrieve();
+    for ( var i = 0; i < boards.length; i++ ) {
+        displayBoard(boards[i]);
+    }
 }
 
-//var boards = [];
 
-//JSON.parse(json_str);
-
-//JSON.stringify(value[, replacer[, space]]);
+function eventHandler(){
+    var new_board = handleNewBoardName();
+    myLocalStorage.saveToLocal(new_board);
+    boardLister();
+}
 
 $(document).ready(function() {
+    boardLister();
     $("#save_board_button").click(eventHandler);
 });
