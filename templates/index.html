@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
 
     <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- CSS file-->
@@ -16,36 +18,41 @@
 
     <!-- Javascript file-->
     <script type="text/javascript" src="static/index_js.js"></script>
+
 </head>
-<body style="padding-top: 100px">
-<!-- Nav Bar  -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New board</button>
-            <a class="navbar-brand" href="">Home</a>
+<div style="padding-top: 100px">
+    <!-- Nav Bar  -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New
+                    board
+                </button>
+                <a class="navbar-brand" href="">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Type the name of the new board</h4>
+                </div>
+                <div class="modal-body">
+                    <input name="new_board_name" id="new_board">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save_board_button">Save</button>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Type the name of the new board</h4>
-      </div>
-      <div class="modal-body">
-        <input name="new_board_name" id="new_board">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save_board_button">Save</button>
-      </div>
-    </div>
-  </div>
 </div>
-
 </body>
 </html>
