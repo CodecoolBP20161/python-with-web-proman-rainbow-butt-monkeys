@@ -25,7 +25,6 @@ var myLocalStorage = function () {
         var oldItems = [];
         oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
         oldItems.push(board);
-        console.log(oldItems);
         localStorage.setItem('Boards', JSON.stringify(oldItems));
     };
     this.getBoards = function () {
@@ -35,7 +34,6 @@ var myLocalStorage = function () {
         var oldItems = [];
         oldItems = JSON.parse(localStorage.getItem('Cards')) || [];
         oldItems.push(card);
-        console.log(oldItems);
         localStorage.setItem('Cards', JSON.stringify(oldItems));
     };
     this.getCards = function () {

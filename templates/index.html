@@ -33,7 +33,7 @@
     </div>
 </nav>
 
-<!-- Modal -->
+<!-- Modal to new board-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -52,19 +52,40 @@
         </div>
     </div>
 </div>
+<!-- Modal to new board-->
+<div class="modal fade" id="myModal_card" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel_card">Type the name of the new card</h4>
+            </div>
+            <div class="modal-body">
+                <input name="new_board_name" id="new_card">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save_card_button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-custom" >
     <div class="row">
         <div class="col-md-4" align="center">
             <button type="button" class=" button-create" data-toggle="modal" data-target="#myModal">New board</button>
+            <button type="button" class=" button-card" data-toggle="modal" data-target="#myModal_card">New Card</button>
         </div>
         <div class="col-md-12" align="center">
         </div>
     </div>
+    <button type="button" class="back_button">Back</button>
 </div>
-<footer class="footer">
-      <div class="container">
-          <p class="text-muted">Rainbow Butt Monkeys</p>
-      </div>
-</footer>
+<!--<footer class="footer">-->
+      <!--<div class="container">-->
+          <!--<p class="text-muted">Rainbow Butt Monkeys</p>-->
+      <!--</div>-->
+<!--</footer>-->
 </body>
 </html>
