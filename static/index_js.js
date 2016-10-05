@@ -4,7 +4,6 @@
 
 function Board(name){
     this.name = name;
-    //this.id = Math.floor((Math.random() * 10000)+ 1000);
     var d = new Date();
     this.id = d.getTime();
 }
