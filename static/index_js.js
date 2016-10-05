@@ -8,6 +8,11 @@ function Board(name){
     this.id = d.getTime();
 }
 
+function Card(name, board_id){
+    this.name = name;
+    this.id = board_id;
+}
+
 var mystorage = new myStorage( new myLocalStorage());
 
 function handleNewBoardName() {
@@ -38,7 +43,6 @@ function boardLister() {
         }
     }
 }
-
 
 function saveBoardClickEventHandler(){
     $(".container-custom").html("");

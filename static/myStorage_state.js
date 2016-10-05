@@ -13,10 +13,16 @@ var myStorage = function (myState) {
     this.getBoards = function(){
         return myState.getBoards();
     };
+    this.saveCard = function () {
+        myState.saveCard();
+    };
+    this.getCards = function(){
+        return myState.getCards();
+    };
 };
 
 var myLocalStorage = function () {
-    this.saveBoard = function (board){
+    this.saveBoard = function (board) {
         var oldItems = [];
         oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
         oldItems.push(board);
@@ -24,10 +30,19 @@ var myLocalStorage = function () {
         localStorage.setItem('Boards', JSON.stringify(oldItems));
     };
     this.getBoards = function () {
-        return JSON.parse(localStorage.getItem('Boards'))|| [];
+        return JSON.parse(localStorage.getItem('Boards')) || [];
+    };
+    this.saveCard = function (card) {
+        var oldItems = [];
+        oldItems = JSON.parse(localStorage.getItem('Cards')) || [];
+        oldItems.push(card);
+        console.log(oldItems);
+        localStorage.setItem('Cards', JSON.stringify(oldItems));
+    };
+    this.getCards = function () {
+        return JSON.parse(localStorage.getItem('Cards')) || [];
     };
 };
-
 
 
 
