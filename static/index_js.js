@@ -20,7 +20,7 @@ var Boards = [];
 var myLocalStorage = function () {};
 
 myLocalStorage.saveToLocal = function (board){
-    // window.localStorage.clear();
+    //window.localStorage.clear();
     var oldItems = [];
     oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
     console.log(board, oldItems);
@@ -69,4 +69,7 @@ function eventHandler(){
 $(document).ready(function() {
     boardLister();
     $("#save_board_button").click(eventHandler);
+    $( function() {
+        $( ".container-custom" ).draggable();
+      } );
 });
