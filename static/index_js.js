@@ -3,6 +3,7 @@
  */
 
 
+
 var Boards = function () {
     var self = this;
 
@@ -19,11 +20,11 @@ var Boards = function () {
         return new_board;
     };
     this.displayBoard = function (board) {
-        var div = document.createElement("div");
+        var div = document.createElement("button");
         div.innerHTML = "Hello new board: " + board.name + " " + board.id;
-        div.setAttribute('class', 'board');
+        div.setAttribute('class', 'button button2');
         div.setAttribute('id', board.id);
-        $(".container-custom").append(div);
+        $(".col-md-12").append(div);;
     };
     this.boardLister = function () {
         var boards = mystorage.getBoards();
@@ -34,7 +35,7 @@ var Boards = function () {
         }
     };
     this.saveBoardClickEventHandler = function () {
-        $(".container-custom").html("");
+        $(".col-md-12").html("");
         var new_board = self.handleNewBoardName();
         console.log(new_board);
         mystorage.saveBoard(new_board);
@@ -43,10 +44,11 @@ var Boards = function () {
     this.clickOnBoardEventHandler = function () {
         var board_id = $(this).attr('id');
         console.log(board_id)
-        $(".container-custom").html("");
+        $(".col-md-12").html("");
         $(this).css('background-color', 'grey');
     };
 };
+
 
 var boards = new Boards();
 var mystorage = new myStorage( new myLocalStorage());
@@ -60,9 +62,10 @@ var Cards = function (){
 };
 
 
+
 $(document).ready(function() {
     boards.boardLister();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
-    $(".board").click(boards.clickOnBoardEventHandler);
+    $(".button").click(boards.clickOnBoardEventHandler);
 
 });

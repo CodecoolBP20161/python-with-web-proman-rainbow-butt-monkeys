@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
 
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -27,10 +27,8 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New
-                board
-            </button>
-            <a class="navbar-brand" href="">Home</a>
+            <!--<a class="navbar-brand" href="">ProMan</a>-->
+            <img src="static/maki.png" id="logo">
         </div>
     </div>
 </nav>
@@ -54,8 +52,19 @@
         </div>
     </div>
 </div>
-<div class="container-custom">
-
+<div class="container-custom" >
+    <div class="row">
+        <div class="col-md-4" align="center">
+            <button type="button" class=" button-create" data-toggle="modal" data-target="#myModal">New board</button>
+        </div>
+        <div class="col-md-12" align="center">
+        </div>
+    </div>
 </div>
+<footer class="footer">
+      <div class="container">
+          <p class="text-muted">Rainbow Butt Monkeys</p>
+      </div>
+</footer>
 </body>
 </html>
