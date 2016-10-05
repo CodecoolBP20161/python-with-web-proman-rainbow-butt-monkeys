@@ -1,0 +1,9 @@
+.board {
+
+    width: 200px;
+    height: 200px;
+    background: red;
+    color: white;
+    margin: 50px;
+    position: relative;
+}
