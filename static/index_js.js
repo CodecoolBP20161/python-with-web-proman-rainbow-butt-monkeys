@@ -20,12 +20,11 @@ function handleNewBoardName() {
 }
 
 function displayBoard(board) {
-
-    var div = document.createElement("div");
-    div.innerHTML = "Hello new board: " + board.name + " " + board.id;
-    div.setAttribute('class', 'board');
-
-    $(".container-custom").append(div);
+    var div = document.createElement("button");
+    div.innerHTML = "Hello new board: " + board.name;
+    div.setAttribute('class', 'button button2');
+    div.setAttribute('id', 'board_details');
+    $(".col-md-12").append(div);
 
 }
 
@@ -41,7 +40,7 @@ function boardLister() {
 
 
 function saveBoardClickEventHandler(){
-    $(".container-custom").html("");
+    $(".col-md-12").html("");
     var new_board = handleNewBoardName();
     console.log(new_board);
     mystorage.saveBoard(new_board);
@@ -51,4 +50,8 @@ function saveBoardClickEventHandler(){
 $(document).ready(function() {
     boardLister();
     $("#save_board_button").click(saveBoardClickEventHandler);
+});
+
+$(document).on('click','#board_details',function(){
+    alert("yes");
 });
