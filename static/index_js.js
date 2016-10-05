@@ -4,6 +4,8 @@
 
 function Board(name){
     this.name = name;
+    var d = new Date();
+    this.id = d.getTime();
 }
 
 var mystorage = new myStorage( new myLocalStorage());
@@ -18,12 +20,10 @@ function handleNewBoardName() {
 }
 
 function displayBoard(board) {
-
     var div = document.createElement("button");
     div.innerHTML = "Hello new board: " + board.name;
     div.setAttribute('class', 'button button2');
     div.setAttribute('id', 'board_details');
-
     $(".col-md-12").append(div);
 
 }
