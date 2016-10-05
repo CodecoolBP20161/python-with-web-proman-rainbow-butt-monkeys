@@ -3,7 +3,6 @@
  */
 
 var myStorage = function (myState) {
-
     this.changeState = function(state) {
         myState = state;
     };
@@ -13,8 +12,8 @@ var myStorage = function (myState) {
     this.getBoards = function(){
         return myState.getBoards();
     };
-    this.saveCard = function () {
-        myState.saveCard();
+    this.saveCard = function (card) {
+        myState.saveCard(card);
     };
     this.getCards = function(){
         return myState.getCards();

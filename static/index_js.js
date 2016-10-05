@@ -2,10 +2,12 @@
  * Created by makaimark on 2016.10.03..
  */
 
+var mystorage = new myStorage( new myLocalStorage());
+
 function Board(name){
     this.name = name;
-    var d = new Date();
-    this.id = d.getTime();
+    var date = new Date();
+    this.id = date.getTime();
 }
 
 function Card(name, board_id){
@@ -13,11 +15,8 @@ function Card(name, board_id){
     this.id = board_id;
 }
 
-var mystorage = new myStorage( new myLocalStorage());
-
 function handleNewBoardName() {
     $('#myModal').modal('toggle');
-
     var name = document.getElementById("new_board").value;
     var new_board = new Board(name);
     document.getElementById("new_board").value = '';
@@ -25,13 +24,10 @@ function handleNewBoardName() {
 }
 
 function displayBoard(board) {
-
     var div = document.createElement("div");
     div.innerHTML = "Hello new board: " + board.name + " " + board.id;
     div.setAttribute('class', 'board');
-
     $(".container-custom").append(div);
-
 }
 
 function boardLister() {
