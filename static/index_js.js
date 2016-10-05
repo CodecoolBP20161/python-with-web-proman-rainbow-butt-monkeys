@@ -20,13 +20,10 @@ var Boards = [];
 var myLocalStorage = function () {};
 
 myLocalStorage.saveToLocal = function (board){
-    //window.localStorage.clear();
     var oldItems = [];
     oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
-    console.log(board, oldItems);
     oldItems.push(board);
     localStorage.setItem('Boards', JSON.stringify(oldItems));
-    displayBoard(myLocalStorage.retrieve());
 };
 
 myLocalStorage.retrieve = function () {
@@ -43,8 +40,8 @@ function handleNewBoardName() {
 }
 
 function displayBoard(board) {
+
     var div = document.createElement("div");
-    var header = document.createElement('h3');
     div.innerHTML = "Hello new board: " + board.name;
     div.setAttribute('class', 'board');
 
@@ -54,13 +51,16 @@ function displayBoard(board) {
 
 function boardLister() {
     var boards = myLocalStorage.retrieve();
-    for ( var i = 0; i < boards.length; i++ ) {
-        displayBoard(boards[i]);
+    if ( boards !== null ) {
+        for (var i = 0; i < boards.length; i++) {
+            displayBoard(boards[i]);
+        }
     }
 }
 
 
 function eventHandler(){
+    $(".container-custom").html("");
     var new_board = handleNewBoardName();
     myLocalStorage.saveToLocal(new_board);
     boardLister();
@@ -69,7 +69,4 @@ function eventHandler(){
 $(document).ready(function() {
     boardLister();
     $("#save_board_button").click(eventHandler);
-    $( function() {
-        $( ".container-custom" ).draggable();
-      } );
 });
