@@ -6,29 +6,7 @@ function Board(name){
     this.name = name;
 }
 
-// var myStorage = function () {};
-//
-// //noinspection JSAnnotator
-// myStorage.saveBoard() = {};
-// //noinspection JSAnnotator
-// myStorage.getBoard() = {};
-// //noinspection JSAnnotator
-// myStorage.implement() = {};
-
-var Boards = [];
-
-var myLocalStorage = function () {};
-
-myLocalStorage.saveToLocal = function (board){
-    var oldItems = [];
-    oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
-    oldItems.push(board);
-    localStorage.setItem('Boards', JSON.stringify(oldItems));
-};
-
-myLocalStorage.retrieve = function () {
-    return JSON.parse(localStorage.getItem("Boards"));
-};
+var mystorage = new myStorage( new myLocalStorage());
 
 function handleNewBoardName() {
     $('#myModal').modal('toggle');
@@ -50,8 +28,9 @@ function displayBoard(board) {
 }
 
 function boardLister() {
-    var boards = myLocalStorage.retrieve();
-    if ( boards !== null ) {
+    var boards = mystorage.getBoards();
+    console.log(boards);
+    if ( boards != null ) {
         for (var i = 0; i < boards.length; i++) {
             displayBoard(boards[i]);
         }
@@ -59,14 +38,15 @@ function boardLister() {
 }
 
 
-function eventHandler(){
+function saveBoardClickEventHandler(){
     $(".container-custom").html("");
     var new_board = handleNewBoardName();
-    myLocalStorage.saveToLocal(new_board);
+    console.log(new_board);
+    mystorage.saveBoard(new_board);
     boardLister();
 }
 
 $(document).ready(function() {
     boardLister();
-    $("#save_board_button").click(eventHandler);
+    $("#save_board_button").click(saveBoardClickEventHandler);
 });
