@@ -4,6 +4,9 @@
 
 function Board(name){
     this.name = name;
+    //this.id = Math.floor((Math.random() * 10000)+ 1000);
+    var d = new Date();
+    this.id = d.getTime();
 }
 
 var mystorage = new myStorage( new myLocalStorage());
@@ -20,7 +23,7 @@ function handleNewBoardName() {
 function displayBoard(board) {
 
     var div = document.createElement("div");
-    div.innerHTML = "Hello new board: " + board.name;
+    div.innerHTML = "Hello new board: " + board.name + " " + board.id;
     div.setAttribute('class', 'board');
 
     $(".container-custom").append(div);
