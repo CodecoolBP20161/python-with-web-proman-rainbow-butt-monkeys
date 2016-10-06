@@ -33,6 +33,7 @@ var Boards = function () {
                 self.displayBoard(boards[i]);
             }
         }
+        $(".button-create").show();
     };
     this.saveBoardClickEventHandler = function () {
         $(".col-md-12").html("");
@@ -42,11 +43,13 @@ var Boards = function () {
     };
     this.clickOnBoardEventHandler = function () {
         var board_id = $(this).attr('id');
+        console.log(board_id);
         $(".col-md-12").html("");
         $(this).css('background-color', 'grey');
         $(".button-create").hide();
         $(".button-card").show();
         $(".back_button").show();
+        cards.cardLister();
     };
     this.backButtonListener = function () {
         $(".col-md-12").html("");
@@ -66,18 +69,18 @@ var Cards = function (){
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
         var name = document.getElementById("new_card").value;
-        console.log(name);
         var new_card = new self.Card(name, "idekellberakniaboardidt");
         document.getElementById("new_card").value = '';
         return new_card;
     };
     this.saveCardClickEventHandler = function () {
         var new_card = self.handleNewCardName();
-        mystorage.saveBoard(new_board);
+        mystorage.saveCard(new_card);
         self.cardLister();
     };
     this.cardLister = function () {
         var cards = mystorage.getCards();
+        console.log(cards);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
                 self.displayCard(cards[i]);
@@ -89,6 +92,7 @@ var Cards = function (){
         div.innerHTML = card.name + " " + card.id;
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', card.id);
+        $(".col-md-12").append(div);
     };
 };
 
@@ -108,3 +112,4 @@ $(document).ready(function() {
     $(".back_button").click(boards.backButtonListener);
 
 });
+$('.button').live('click',boards.clickOnBoardEventHandler);
