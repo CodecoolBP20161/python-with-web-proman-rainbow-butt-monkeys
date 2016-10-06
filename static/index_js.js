@@ -14,9 +14,14 @@ var Boards = function () {
     this.handleNewBoardName = function () {
         $('#myModal').modal('toggle');
         var name = document.getElementById("new_board").value;
-        var new_board = new self.Board(name);
-        document.getElementById("new_board").value = '';
-        return new_board;
+        if (name != "") {
+            var new_board = new self.Board(name);
+            document.getElementById("new_board").value = '';
+            return new_board;
+        }else{
+            alert("Please write a name for your new board");
+        }
+
     };
     this.displayBoard = function (board) {
         var div = document.createElement("button");
@@ -39,8 +44,11 @@ var Boards = function () {
     this.saveBoardClickEventHandler = function () {
         $(".col-md-12").html("");
         var new_board = self.handleNewBoardName();
-        mystorage.saveBoard(new_board);
+        if (new_board != null) {
+            mystorage.saveBoard(new_board);
+        }
         self.boardLister();
+
     };
     this.clickOnBoardEventHandler = function (targetid) {
         self.actualBoardId = targetid;
