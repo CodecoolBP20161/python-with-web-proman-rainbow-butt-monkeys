@@ -97,6 +97,18 @@ var Cards = function (){
     };
 };
 
+var localStorageClearer = function () {
+    var answer = confirm("Press OK to delete the localStorage!");
+    if (answer == true) {
+        localStorage.clear();
+        $(".col-md-12").html("");
+    } else {
+        
+    }
+
+
+};
+
 var boards = new Boards();
 var mystorage = new myStorage( new myLocalStorage());
 var cards = new Cards();
@@ -111,5 +123,8 @@ $(document).ready(function() {
     //$(".button").click(boards.clickOnBoardEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
     $(".back_button").click(boards.backButtonListener);
+    $(".delete_button").click(localStorageClearer);
 
 });
+
+
