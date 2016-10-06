@@ -34,6 +34,8 @@ var Boards = function () {
             }
         }
         $(".button-create").show();
+        $('.button').on('click',function(){self.clickOnBoardEventHandler()} );
+
     };
     this.saveBoardClickEventHandler = function () {
         $(".col-md-12").html("");
@@ -43,7 +45,6 @@ var Boards = function () {
     };
     this.clickOnBoardEventHandler = function () {
         var board_id = $(this).attr('id');
-        console.log(board_id);
         $(".col-md-12").html("");
         $(this).css('background-color', 'grey');
         $(".button-create").hide();
@@ -56,6 +57,7 @@ var Boards = function () {
         $(".button-card").hide();
         $(".back_button").hide();
         self.boardLister();
+
     };
 };
 
@@ -80,7 +82,6 @@ var Cards = function (){
     };
     this.cardLister = function () {
         var cards = mystorage.getCards();
-        console.log(cards);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
                 self.displayCard(cards[i]);
@@ -112,4 +113,3 @@ $(document).ready(function() {
     $(".back_button").click(boards.backButtonListener);
 
 });
-$('.button').live('click',boards.clickOnBoardEventHandler);
