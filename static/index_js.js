@@ -44,7 +44,7 @@ var Boards = function () {
     this.clickOnBoardEventHandler = function () {
         var board_id = $(this).attr('id');
         console.log(board_id);
-        $(".col-md-12").html("");
+
         $(this).css('background-color', 'grey');
         $(".button-create").hide();
         $(".button-card").show();
@@ -79,6 +79,7 @@ var Cards = function (){
         self.cardLister();
     };
     this.cardLister = function () {
+        $(".col-md-12").html("");
         var cards = mystorage.getCards();
         console.log(cards);
         if (cards != null) {
