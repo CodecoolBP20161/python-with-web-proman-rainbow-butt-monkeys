@@ -2,10 +2,9 @@
  * Created by makaimark on 2016.10.03..
  */
 
-
-
 var Boards = function () {
     var self = this;
+    self.actualBoardId = 0;
 
     this.Board = function (name) {
         this.name = name;
@@ -15,9 +14,14 @@ var Boards = function () {
     this.handleNewBoardName = function () {
         $('#myModal').modal('toggle');
         var name = document.getElementById("new_board").value;
-        var new_board = new self.Board(name);
-        document.getElementById("new_board").value = '';
-        return new_board;
+        if (name != "") {
+            var new_board = new self.Board(name);
+            document.getElementById("new_board").value = '';
+            return new_board;
+        }else{
+            alert("Please write a name for your new board");
+        }
+
     };
     this.displayBoard = function (board) {
         var div = document.createElement("button");
@@ -33,20 +37,26 @@ var Boards = function () {
                 self.displayBoard(boards[i]);
             }
         }
+        $(".button-create").show();
+        $('.button').on('click',function(event){self.clickOnBoardEventHandler(event.target.id)} );
+
     };
     this.saveBoardClickEventHandler = function () {
         $(".col-md-12").html("");
         var new_board = self.handleNewBoardName();
-        mystorage.saveBoard(new_board);
+        if (new_board != null) {
+            mystorage.saveBoard(new_board);
+        }
         self.boardLister();
+
     };
-    this.clickOnBoardEventHandler = function () {
-        var board_id = $(this).attr('id');
-        $(".col-md-12").html("");
+    this.clickOnBoardEventHandler = function (targetid) {
+        self.actualBoardId = targetid;
         $(this).css('background-color', 'grey');
         $(".button-create").hide();
         $(".button-card").show();
         $(".back_button").show();
+        cards.cardLister(self.actualBoardId);
     };
     this.backButtonListener = function () {
         $(".col-md-12").html("");
@@ -66,20 +76,22 @@ var Cards = function (){
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
         var name = document.getElementById("new_card").value;
-        console.log(name);
-        var new_card = new self.Card(name, "idekellberakniaboardidt");
+        var new_card = new self.Card(name, boards.actualBoardId);
+        console.log(boards.actualBoardId);
         document.getElementById("new_card").value = '';
         return new_card;
     };
     this.saveCardClickEventHandler = function () {
         var new_card = self.handleNewCardName();
-        mystorage.saveBoard(new_board);
-        self.cardLister();
+        mystorage.saveCard(new_card);
+        self.cardLister(boards.actualBoardId);
     };
-    this.cardLister = function () {
+    this.cardLister = function (board_id) {
+        $(".col-md-12").html("");
         var cards = mystorage.getCards();
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
+                if (board_id == cards[i].id)
                 self.displayCard(cards[i]);
             }
         }
@@ -89,7 +101,20 @@ var Cards = function (){
         div.innerHTML = card.name + " " + card.id;
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', card.id);
+        $(".col-md-12").append(div);
     };
+};
+
+var localStorageClearer = function () {
+    var answer = confirm("Press OK to delete the localStorage!");
+    if (answer == true) {
+        localStorage.clear();
+        $(".col-md-12").html("");
+    } else {
+        
+    }
+
+
 };
 
 var boards = new Boards();
@@ -103,8 +128,11 @@ $(document).ready(function() {
     $(".button-card").hide();
     boards.boardLister();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
-    $(".button").click(boards.clickOnBoardEventHandler);
+    //$(".button").click(boards.clickOnBoardEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
     $(".back_button").click(boards.backButtonListener);
+    $(".delete_button").click(localStorageClearer);
 
 });
+
+

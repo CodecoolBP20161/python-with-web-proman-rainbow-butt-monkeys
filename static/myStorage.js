@@ -22,19 +22,19 @@ var myStorage = function (myState) {
 
 var myLocalStorage = function () {
     this.saveBoard = function (board) {
-        var oldItems = [];
-        oldItems = JSON.parse(localStorage.getItem('Boards')) || [];
-        oldItems.push(board);
-        localStorage.setItem('Boards', JSON.stringify(oldItems));
+        var oldBoards = [];
+        oldBoards = JSON.parse(localStorage.getItem('Boards')) || [];
+        oldBoards.push(board);
+        localStorage.setItem('Boards', JSON.stringify(oldBoards));
     };
     this.getBoards = function () {
         return JSON.parse(localStorage.getItem('Boards')) || [];
     };
     this.saveCard = function (card) {
-        var oldItems = [];
-        oldItems = JSON.parse(localStorage.getItem('Cards')) || [];
-        oldItems.push(card);
-        localStorage.setItem('Cards', JSON.stringify(oldItems));
+        var oldCards = [];
+        oldCards = JSON.parse(localStorage.getItem('Cards')) || [];
+        oldCards.push(card);
+        localStorage.setItem('Cards', JSON.stringify(oldCards));
     };
     this.getCards = function () {
         return JSON.parse(localStorage.getItem('Cards')) || [];
