@@ -9,6 +9,9 @@ var myStorage = function (myState) {
     this.saveBoard = function(board){
         myState.saveBoard(board);
     };
+    // this.deleteBoard = function(board){
+    //     myState.deleteBoard(board);
+    // };
     this.getBoards = function(){
         return myState.getBoards();
     };
@@ -18,6 +21,9 @@ var myStorage = function (myState) {
     this.getCards = function(){
         return myState.getCards();
     };
+    // this.deleteCard = function(card){
+    //     myState.deleteCard(card);
+    // };
 };
 
 var myLocalStorage = function () {
@@ -39,6 +45,27 @@ var myLocalStorage = function () {
     this.getCards = function () {
         return JSON.parse(localStorage.getItem('Cards')) || [];
     };
+    // this.deleteCard = function (card){
+    //
+    // };
+    // this.deleteBoard = function (board) {
+    //     var oldBoards = [];
+    //     oldBoards = JSON.parse(localStorage.getItem('Boards')) || [];
+    //     var oldCards = [];
+    //     oldCards = JSON.parse(localStorage.getItem('Cards')) || [];
+    //     for ( var i = 0; i < oldCards.length; i++){
+    //         if ( oldCards[i].id == board.id) {
+    //             oldCards.splice(oldCards[i], 1)
+    //         }
+    //     }
+    //     localStorage.setItem('Cards', JSON.stringify(oldCards));
+    //     for ( var j = 0; j < oldBoards.length; j++){
+    //         if ( oldBoards[j].id == board.id) {
+    //             oldBoards.splice(oldBoards[j], 1)
+    //         }
+    //     }
+    //     localStorage.setItem('Boards', JSON.stringify(oldBoards));
+    // };
 };
 
 
