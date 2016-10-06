@@ -25,7 +25,7 @@ var Boards = function () {
     };
     this.displayBoard = function (board) {
         var div = document.createElement("button");
-        div.innerHTML = board.name + " " + board.id;
+        div.innerHTML = board.name;
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', board.id);
         $(".col-md-12").append(div);
@@ -97,9 +97,9 @@ var Cards = function (){
         }
     };
     this.displayCard = function (card) {
-        var div = document.createElement("button");
-        div.innerHTML = card.name + " " + card.id;
-        div.setAttribute('class', 'button button2');
+        var div = document.createElement("div");
+        div.innerHTML = "+ " + card.name;
+        div.setAttribute('class', 'card');
         div.setAttribute('id', card.id);
         $(".col-md-12").append(div);
     };
@@ -131,7 +131,7 @@ $(document).ready(function() {
     //$(".button").click(boards.clickOnBoardEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
     $(".back_button").click(boards.backButtonListener);
-    $(".delete_button").click(localStorageClearer);
+    $(".button_delete").click(localStorageClearer);
 
 });
 
