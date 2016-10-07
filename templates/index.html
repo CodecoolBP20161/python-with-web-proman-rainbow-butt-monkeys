@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- CSS file-->
+    <link rel="stylesheet" href="static/index.css">
+
+    <!-- Javascript file-->
+    <script type="text/javascript" src="static/myStorage.js"></script>
+    <script type="text/javascript" src="static/index_js.js"></script>
+
+</head>
+<body style="padding-top: 100px">
+<!-- Nav Bar  -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--<a class="navbar-brand" href="">ProMan</a>-->
+            <img src="static/maki.png" id="logo">
+        </div>
+    </div>
+</nav>
+
+<!-- Modal to new board-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Type the name of the new board</h4>
+            </div>
+            <div class="modal-body">
+                <input name="new_board_name" id="new_board">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save_board_button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal to new board-->
+<div class="modal fade" id="myModal_card" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel_card">Type the name of the new card</h4>
+            </div>
+            <div class="modal-body">
+                <input name="new_board_name" id="new_card">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save_card_button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-custom" >
+
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <button type="button" class=" button-create" data-toggle="modal" data-target="#myModal">New board</button>
+            <button type="button" class=" button-card" data-toggle="modal" data-target="#myModal_card">New Card</button>
+            <button type="button" class="button_delete">Delete boards</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" align="center" id="boards">
+        </div>
+    </div>
+    <div class="container">
+      <table class="table" id="pina">
+      </table>
+    </div>
+        </div>
+        <button type="button" class="back_button">Back</button>
+</body>
+</html>
