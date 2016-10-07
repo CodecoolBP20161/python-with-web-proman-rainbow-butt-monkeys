@@ -28,7 +28,7 @@ var Boards = function () {
         div.innerHTML = board.name;
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', board.id);
-        $(".col-md-12").append(div);
+        $("#boards").append(div);
     };
     this.boardLister = function () {
         var boards = mystorage.getBoards();
@@ -42,7 +42,7 @@ var Boards = function () {
 
     };
     this.saveBoardClickEventHandler = function () {
-        $(".col-md-12").html("");
+        $("#boards").html("");
         var new_board = self.handleNewBoardName();
         if (new_board != null) {
             mystorage.saveBoard(new_board);
@@ -56,12 +56,14 @@ var Boards = function () {
         $(".button-create").hide();
         $(".button-card").show();
         $(".back_button").show();
+        $("#pina").show();
         cards.cardLister(self.actualBoardId);
     };
     this.backButtonListener = function () {
-        $(".col-md-12").html("");
+        $("#boards").html("");
         $(".button-card").hide();
         $(".back_button").hide();
+        $("#pina").hide();
         self.boardLister();
     };
 };
@@ -87,7 +89,8 @@ var Cards = function (){
         self.cardLister(boards.actualBoardId);
     };
     this.cardLister = function (board_id) {
-        $(".col-md-12").html("");
+        $("#pina").html("");
+        $("#boards").html("");
         var cards = mystorage.getCards();
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
@@ -97,11 +100,12 @@ var Cards = function (){
         }
     };
     this.displayCard = function (card) {
-        var div = document.createElement("div");
+        var div = document.createElement("tr");
+        var table = document.getElementById("pina");
         div.innerHTML = "+ " + card.name;
         div.setAttribute('class', 'card');
         div.setAttribute('id', card.id);
-        $(".col-md-12").append(div);
+        $("#pina").append(div);
     };
 };
 
@@ -109,7 +113,7 @@ var localStorageClearer = function () {
     var answer = confirm("Press OK to delete the localStorage!");
     if (answer == true) {
         localStorage.clear();
-        $(".col-md-12").html("");
+        $("#boards").html("");
     } else {
         
     }
@@ -124,6 +128,7 @@ var cards = new Cards();
 
 
 $(document).ready(function() {
+    $("#pina").hide();
     $(".back_button").hide();
     $(".button-card").hide();
     boards.boardLister();
