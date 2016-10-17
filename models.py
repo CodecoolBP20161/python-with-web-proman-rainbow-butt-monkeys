@@ -15,8 +15,20 @@ class Boards(BaseModel):
     id = IntegerField()
     name = TextField()
 
+    def getBoards(self):
+        return Boards.select()
+
+    def saveBoard(self, id, name):
+        Boards.create(id=id, name=name)
+
 
 class Cards(BaseModel):
-    id = ForeignKeyField(Boards, related_name="cards")
+    board_id = ForeignKeyField(Boards, related_name="cards")
     name = TextField()
-    status = TextField()
+    #status = TextField()
+
+    def getCards(self):
+        return Cards.select()
+
+    def saveCard(self, id, name):
+        Cards.create(board_id=id, name=name)
