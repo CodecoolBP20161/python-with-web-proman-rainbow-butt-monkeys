@@ -34,6 +34,7 @@ var Boards = function () {
 
     this.boardLister = function () {
         var boards = mystorage.getBoards();
+        console.log(boards);
         if (boards != null) {
             for (var i = 0; i < boards.length; i++) {
                 self.displayBoard(boards[i]);

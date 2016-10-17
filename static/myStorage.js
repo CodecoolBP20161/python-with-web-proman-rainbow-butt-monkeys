@@ -46,9 +46,9 @@ var myLocalStorage = function () {
 var myLocalStorageDatabase = function () {
     this.saveBoard = function (board) {
         $.ajax({
-          type: "POST",
-          url: 'http://192.168.160.115:5000/saveboard',
-          data: JSON.parse(board),
+          type: "PUT",
+          url: 'http://192.168.160.115:5000/boards',
+          data: JSON.stringify(board),
           success: function () {
               console.log("success board")
           },
@@ -58,14 +58,16 @@ var myLocalStorageDatabase = function () {
     };
     this.getBoards = function () {
         $.ajax( {
-            url: 'http://192.168.160.115:5000/getboards',
+            url: 'http://192.168.160.115:5000/boards',
             async: true,
             dataType: 'json',
             success: function (json) {
+                console.log("pina");
                 data = json;
+                console.log(data);
+                return data
             }
         });
-        return JSON.parse(data)
     };
 
     this.saveCard = function (card) {

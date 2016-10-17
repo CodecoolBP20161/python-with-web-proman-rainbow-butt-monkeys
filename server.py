@@ -9,15 +9,18 @@ app = Flask(__name__)
 def hello_world():
     return render_template('index.html')
 
-@app.route('/getboards', methods=['GET'])
+@app.route('/boards', methods=['GET'])
 def getBoards():
     boards = Boards.getBoards()
+    # itt végig kéne menni egy for ciklussal és mindent jsonné alakítani.
     json_boards = json.dumps(boards)
+    print(json_boards)
     return json_boards
 
-@app.route('/saveboard', methods=['POST'])
-def saveBoard(name, id):
-    new_board = Boards.saveBoard(id, name)
+@app.route('/boards', methods=['PUT'])
+def saveBoard(board):
+    board = json.load(board)
+    new_board = Boards.saveBoard(board)
 
 @app.route('/getcards', methods=['GET'])
 def getCards(id):
