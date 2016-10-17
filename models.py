@@ -17,6 +17,6 @@ class Boards(BaseModel):
 
 
 class Cards(BaseModel):
-    board_id = ForeignKeyField(Boards, related_name="cards")
+    id = ForeignKeyField(Boards, related_name="cards")
     name = TextField()
     status = TextField()
