@@ -16,12 +16,12 @@ class Boards(BaseModel):
     name = TextField()
 
     @classmethod
-    def getBoards(cls):
+    def get_boards(cls):
         return cls.select()
 
     @classmethod
-    def saveBoard(cls, id, name):
-        cls.create(id=id, name=name)
+    def save_board(cls, board):
+        cls.create(id=board.id, name=board.name)
 
 
 class Cards(BaseModel):
@@ -30,9 +30,9 @@ class Cards(BaseModel):
     #status = TextField()
 
     @classmethod
-    def getCards(cls):
+    def get_cards(cls):
         return cls.select()
 
     @classmethod
-    def saveCard(cls, id, name):
+    def save_card(cls, id, name):
         cls.create(board_id=id, name=name)

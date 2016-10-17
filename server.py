@@ -9,25 +9,26 @@ app = Flask(__name__)
 def hello_world():
     return render_template('index.html')
 
-@app.route('/getboards', methods=['GET'])
-def getBoards():
-    boards = Boards.getBoards()
+@app.route('/boards', methods=['GET'])
+def get_boards():
+    boards = Boards.get_boards()
     json_boards = json.dumps(boards)
     return json_boards
 
-@app.route('/saveboard', methods=['POST'])
-def saveBoard(name, id):
-    new_board = Boards.saveBoard(id, name)
+@app.route('/boards', methods=['PUT'])
+def save_board(board):
+    board = json.loads(board)
+    new_board = Boards.save_board(board)
 
-@app.route('/getcards', methods=['GET'])
-def getCards(id):
+@app.route('/cards', methods=['GET'])
+def get_cards(id):
     cards = Cards.select().where(id = Cards.board_id)
     json_cards = json.dumps(cards)
     return json_cards
 
-@app.route('/savecard', methods=['POST'])
-def saveCard(board_id, name):
-    card = Cards.saveCard(board_id, name)
+@app.route('/card', methods=['POST'])
+def save_card(board_id, name):
+    card = Cards.save_card(board_id, name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
