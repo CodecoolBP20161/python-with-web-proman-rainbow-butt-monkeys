@@ -74,7 +74,7 @@ var myLocalStorageDatabase = function () {
         $.ajax({
           type: "POST",
           url: 'http://192.168.160.115:5000/savecard',
-          data: JSON.parse(card),
+          data: JSON.stringify(card),
           success: function () {
               console.log("success card")
           },

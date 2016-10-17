@@ -15,8 +15,8 @@ class Boards(BaseModel):
     id = PrimaryKeyField()
     name = CharField()
 
-    @classmethod
-    def getBoards(cls):
+    @classmethod  # converting obj to dict for the json
+    def get_boards(cls):
         data = cls.select(cls.name, cls.id)
         if data != []:
             dict = {}
@@ -30,7 +30,7 @@ class Boards(BaseModel):
 
 
     @classmethod
-    def saveBoard(cls, board):
+    def save_board(cls, board):
         cls.create(id=board.id, name=board.name)
 
 
@@ -40,9 +40,9 @@ class Cards(BaseModel):
     #status = TextField()
 
     @classmethod
-    def getCards(cls):
+    def get_cards(cls):
         return cls.select()
 
     @classmethod
-    def saveCard(cls, id, name):
+    def save_card(cls, id, name):
         cls.create(board_id=id, name=name)
