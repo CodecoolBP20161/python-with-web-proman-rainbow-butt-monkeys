@@ -11,6 +11,7 @@ var Boards = function () {
         var date = new Date();
         this.id = date.getTime();
     };
+
     this.handleNewBoardName = function () {
         $('#myModal').modal('toggle');
         var name = document.getElementById("new_board").value;
@@ -30,6 +31,7 @@ var Boards = function () {
         div.setAttribute('id', board.id);
         $("#boards").append(div);
     };
+
     this.boardLister = function () {
         var boards = mystorage.getBoards();
         if (boards != null) {
@@ -78,14 +80,20 @@ var Cards = function (){
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
         var name = document.getElementById("new_card").value;
-        var new_card = new self.Card(name, boards.actualBoardId);
-        console.log(boards.actualBoardId);
-        document.getElementById("new_card").value = '';
-        return new_card;
+        if (name != "") {
+            var new_card = new self.Card(name, boards.actualBoardId);
+            console.log(boards.actualBoardId);
+            document.getElementById("new_card").value = '';
+            return new_card;
+        }else{
+            alert("Please write a name for your new board");
+        }
     };
     this.saveCardClickEventHandler = function () {
         var new_card = self.handleNewCardName();
-        mystorage.saveCard(new_card);
+        if (new_board != null) {
+            mystorage.saveCard(new_card);
+        }
         self.cardLister(boards.actualBoardId);
     };
     this.cardLister = function (board_id) {
@@ -115,7 +123,7 @@ var localStorageClearer = function () {
         localStorage.clear();
         $("#boards").html("");
     } else {
-        
+
     }
 
 
@@ -139,5 +147,3 @@ $(document).ready(function() {
     $(".button_delete").click(localStorageClearer);
 
 });
-
-

@@ -12,7 +12,7 @@ class BaseModel(Model):
 
 
 class Boards(BaseModel):
-    id = IntegerField()
+    id = PrimaryKeyField()
     name = TextField()
 
 
