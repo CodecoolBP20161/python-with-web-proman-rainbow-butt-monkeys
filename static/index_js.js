@@ -130,7 +130,7 @@ var localStorageClearer = function () {
 };
 
 var boards = new Boards();
-var mystorage = new myStorage( new myLocalStorage());
+var mystorage = new myStorage( new myLocalStorageDatabase());
 var cards = new Cards();
 
 

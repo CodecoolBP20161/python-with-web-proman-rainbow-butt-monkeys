@@ -15,11 +15,13 @@ class Boards(BaseModel):
     id = PrimaryKeyField()
     name = TextField()
 
-    def getBoards(self):
-        return Boards.select()
+    @classmethod
+    def getBoards(cls):
+        return cls.select()
 
-    def saveBoard(self, id, name):
-        Boards.create(id=id, name=name)
+    @classmethod
+    def saveBoard(cls, id, name):
+        cls.create(id=id, name=name)
 
 
 class Cards(BaseModel):
@@ -27,8 +29,10 @@ class Cards(BaseModel):
     name = TextField()
     #status = TextField()
 
-    def getCards(self):
-        return Cards.select()
+    @classmethod
+    def getCards(cls):
+        return cls.select()
 
-    def saveCard(self, id, name):
-        Cards.create(board_id=id, name=name)
+    @classmethod
+    def saveCard(cls, id, name):
+        cls.create(board_id=id, name=name)
