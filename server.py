@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from models import *
 import json
 
@@ -12,13 +12,15 @@ def hello_world():
 @app.route('/boards', methods=['GET'])
 def get_boards():
     boards = Boards.get_boards()
+    print(boards)
     json_boards = json.dumps(boards)
     print(json_boards)
     return json_boards
 
 @app.route('/boards', methods=['PUT'])
-def save_board(board):
-    board = json.loads(board)
+def save_board():
+    board = request.json
+    print(board, "JSON")
     new_board = Boards.save_board(board)
 
 @app.route('/cards', methods=['GET'])

@@ -32,9 +32,9 @@ var Boards = function () {
         $("#boards").append(div);
     };
 
-    this.boardLister = function () {
-        var boards = mystorage.getBoards();
-        console.log(boards);
+    this.boardLister = function (boards) {
+        // var boards = mystorage.getBoards();
+        // boardList =  [boards];
         if (boards != null) {
             for (var i = 0; i < boards.length; i++) {
                 self.displayBoard(boards[i]);
@@ -140,7 +140,7 @@ $(document).ready(function() {
     $("#pina").hide();
     $(".back_button").hide();
     $(".button-card").hide();
-    boards.boardLister();
+    mystorage.getBoards();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
     //$(".button").click(boards.clickOnBoardEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);

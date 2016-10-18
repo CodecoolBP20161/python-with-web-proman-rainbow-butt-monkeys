@@ -46,26 +46,25 @@ var myLocalStorage = function () {
 var myLocalStorageDatabase = function () {
     this.saveBoard = function (board) {
         $.ajax({
-          type: "PUT",
-          url: 'http://192.168.160.115:5000/boards',
-          data: JSON.stringify(board),
-          success: function () {
+            type: "PUT",
+            url: '/boards',
+            data: JSON.stringify(board),
+            contentType: 'application/json; charset=utf-8',
+            success: function () {
               console.log("success board")
-          },
-          dataType: 'json'
+            },
+            dataType: 'json'
         });
-
+        console.log(data)
     };
     this.getBoards = function () {
         $.ajax( {
-            url: 'http://192.168.160.115:5000/boards',
-            async: true,
+            url: '/boards',
+            async: false,
             dataType: 'json',
             success: function (json) {
-                console.log("pina");
                 data = json;
-                console.log(data);
-                return data
+                boards.boardLister(data)
             }
         });
     };

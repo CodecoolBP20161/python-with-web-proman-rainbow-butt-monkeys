@@ -19,11 +19,13 @@ class Boards(BaseModel):
     def get_boards(cls):
         data = cls.select(cls.name, cls.id)
         if data != []:
-            dict = {}
+            list = []
             for i in data:
+                dict = {}
                 dict['id'] = i.id
                 dict['name'] = i.name
-            return dict
+                list.append(dict)
+            return list
         else:
             print("hülye vagy fiam")
             pass
