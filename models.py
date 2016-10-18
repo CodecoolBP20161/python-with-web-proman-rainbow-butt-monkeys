@@ -12,12 +12,12 @@ class BaseModel(Model):
 
 
 class Boards(BaseModel):
-    id = PrimaryKeyField()
     name = CharField()
+    board_id = CharField(255)
 
     @classmethod  # converting obj to dict for the json
     def get_boards(cls):
-        data = cls.select(cls.name, cls.id)
+        data = cls.select(cls.name, cls.board_id)
         if data != []:
             list = []
             for i in data:
@@ -33,7 +33,9 @@ class Boards(BaseModel):
 
     @classmethod
     def save_board(cls, board):
-        cls.create(id=board.id, name=board.name)
+        print(board['id'])
+        print(board['name'])
+        cls.create(board_id=board['id'], name=board['name'])
 
 
 class Cards(BaseModel):

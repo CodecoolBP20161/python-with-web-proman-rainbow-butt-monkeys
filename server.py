@@ -19,7 +19,7 @@ def get_boards():
 
 @app.route('/boards', methods=['PUT'])
 def save_board():
-    board = request.json
+    board = request.get_json(silent=True)
     print(board, "JSON")
     new_board = Boards.save_board(board)
 

@@ -55,7 +55,6 @@ var myLocalStorageDatabase = function () {
             },
             dataType: 'json'
         });
-        console.log(data)
     };
     this.getBoards = function () {
         $.ajax( {

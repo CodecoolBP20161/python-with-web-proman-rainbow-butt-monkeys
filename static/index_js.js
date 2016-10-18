@@ -48,6 +48,7 @@ var Boards = function () {
         $("#boards").html("");
         var new_board = self.handleNewBoardName();
         if (new_board != null) {
+            console.log(new_board)
             mystorage.saveBoard(new_board);
         }
         self.boardLister();

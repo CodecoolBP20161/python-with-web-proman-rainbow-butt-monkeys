@@ -3,7 +3,7 @@
 from models import *
 
 db.connect()
-db.drop_tables([Boards, Cards])
+# db.drop_tables([Boards])
 print("Drop tables")
 db.create_tables([Boards, Cards], safe=True)
 print("Create tables")
