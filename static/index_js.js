@@ -9,7 +9,7 @@ var Boards = function () {
     this.Board = function (name) {
         this.name = name;
         var date = new Date();
-        this.id = date.getTime();
+        this.board_id = date.getTime();
     };
 
     this.handleNewBoardName = function () {
@@ -28,7 +28,7 @@ var Boards = function () {
         var div = document.createElement("button");
         div.innerHTML = board.name;
         div.setAttribute('class', 'button button2');
-        div.setAttribute('id', board.id);
+        div.setAttribute('id', board.board_id);
         $("#boards").append(div);
     };
 
@@ -41,27 +41,28 @@ var Boards = function () {
             }
         }
         $(".button-create").show();
-        $('.button').on('click',function(event){self.clickOnBoardEventHandler(event.target.id)} );
+        $('.button').on('click',function(event){
+            self.clickOnBoardEventHandler(event.target.id)
+        } );
 
     };
     this.saveBoardClickEventHandler = function () {
         $("#boards").html("");
         var new_board = self.handleNewBoardName();
         if (new_board != null) {
-            console.log(new_board)
             mystorage.saveBoard(new_board);
         }
         self.boardLister();
-
     };
     this.clickOnBoardEventHandler = function (targetid) {
         self.actualBoardId = targetid;
+        console.log("in board", targetid);
         $(this).css('background-color', 'grey');
         $(".button-create").hide();
         $(".button-card").show();
         $(".back_button").show();
         $("#pina").show();
-        cards.cardLister(self.actualBoardId);
+        mystorage.getCards(targetid);
     };
     this.backButtonListener = function () {
         $("#boards").html("");
@@ -77,14 +78,13 @@ var Cards = function (){
 
     this.Card = function (name, board_id){
         this.name = name;
-        this.id = board_id;
+        this.board_id = board_id;
     };
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
         var name = document.getElementById("new_card").value;
         if (name != "") {
             var new_card = new self.Card(name, boards.actualBoardId);
-            console.log(boards.actualBoardId);
             document.getElementById("new_card").value = '';
             return new_card;
         }else{
@@ -98,13 +98,12 @@ var Cards = function (){
         }
         self.cardLister(boards.actualBoardId);
     };
-    this.cardLister = function (board_id) {
+    this.cardLister = function (cards) {
         $("#pina").html("");
         $("#boards").html("");
-        var cards = mystorage.getCards();
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
-                if (board_id == cards[i].id)
+                if (board_id == cards[i].board_id)
                 self.displayCard(cards[i]);
             }
         }
@@ -114,7 +113,7 @@ var Cards = function (){
         var table = document.getElementById("pina");
         div.innerHTML = "+ " + card.name;
         div.setAttribute('class', 'card');
-        div.setAttribute('id', card.id);
+        div.setAttribute('id', card.board_id);
         $("#pina").append(div);
     };
 };

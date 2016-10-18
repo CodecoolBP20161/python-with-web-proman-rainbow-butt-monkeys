@@ -70,9 +70,10 @@ var myLocalStorageDatabase = function () {
 
     this.saveCard = function (card) {
         $.ajax({
-          type: "POST",
-          url: 'http://192.168.160.115:5000/savecard',
+          type: "PUT",
+          url: '/cards',
           data: JSON.stringify(card),
+            contentType: 'application/json; charset=utf-8',
           success: function () {
               console.log("success card")
           },
@@ -81,16 +82,18 @@ var myLocalStorageDatabase = function () {
 
     };
 
-    this.getCards = function () {
+    this.getCards = function (id) {
         $.ajax( {
-            url: 'http://192.168.160.115:5000/getcards',
-            async: true,
+            url: '/cards',
+            async: false,
+            data: JSON.stringify(id),
+            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function (json) {
                 data = json;
+                cards.cardLister(data)
             }
         });
-        return JSON.parse(data)
     };
 };
 

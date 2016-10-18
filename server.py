@@ -12,24 +12,23 @@ def hello_world():
 @app.route('/boards', methods=['GET'])
 def get_boards():
     boards = Boards.get_boards()
-    print(boards)
     json_boards = json.dumps(boards)
-    print(json_boards)
     return json_boards
 
 @app.route('/boards', methods=['PUT'])
 def save_board():
     board = request.get_json(silent=True)
-    print(board, "JSON")
     new_board = Boards.save_board(board)
 
 @app.route('/cards', methods=['GET'])
-def get_cards(id):
-    cards = Cards.select().where(id = Cards.board_id)
+def get_cards():
+    board_id = request.get_json(silent=True)
+    print("Card board id" ,board_id)
+    cards = Cards.get_cards(board_id)
     json_cards = json.dumps(cards)
     return json_cards
 
-@app.route('/card', methods=['POST'])
+@app.route('/cards', methods=['PUT'])
 def save_card(board_id, name):
     card = Cards.save_card(board_id, name)
 

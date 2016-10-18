@@ -22,7 +22,7 @@ class Boards(BaseModel):
             list = []
             for i in data:
                 dict = {}
-                dict['id'] = i.id
+                dict['board_id'] = i.board_id
                 dict['name'] = i.name
                 list.append(dict)
             return list
@@ -33,9 +33,9 @@ class Boards(BaseModel):
 
     @classmethod
     def save_board(cls, board):
-        print(board['id'])
+        print(board['board_id'])
         print(board['name'])
-        cls.create(board_id=board['id'], name=board['name'])
+        cls.create(board_id=board['board_id'], name=board['name'])
 
 
 class Cards(BaseModel):
@@ -44,8 +44,8 @@ class Cards(BaseModel):
     #status = TextField()
 
     @classmethod
-    def get_cards(cls):
-        return cls.select()
+    def get_cards(cls, id):
+        return cls.select().where(cls.board_id == id)
 
     @classmethod
     def save_card(cls, id, name):
