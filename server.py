@@ -23,11 +23,10 @@ def save_board():
 @app.route('/getcards', methods=['POST'])
 def get_cards():
     cards = Cards.get_cards()
-    print(cards)
     json_cards = json.dumps(cards)
     return json_cards
 
-@app.route('/cards', methods=['POST'])
+@app.route('/savecard', methods=['POST'])
 def save_card():
     fromjson = request.get_json(silent=True)
     card = Cards.save_card(fromjson["board_id"], fromjson["name"])

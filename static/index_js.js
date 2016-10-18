@@ -2,6 +2,7 @@
  * Created by makaimark on 2016.10.03..
  */
 
+
 var Boards = function () {
     var self = this;
     self.actualBoardId = 0;
@@ -22,7 +23,6 @@ var Boards = function () {
         }else{
             alert("Please write a name for your new board");
         }
-
     };
     this.displayBoard = function (board) {
         var div = document.createElement("button");
@@ -30,11 +30,10 @@ var Boards = function () {
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', board.board_id);
         $("#boards").append(div);
+
     };
 
     this.boardLister = function (boards) {
-        // var boards = mystorage.getBoards();
-        // boardList =  [boards];
         if (boards != null) {
             for (var i = 0; i < boards.length; i++) {
                 self.displayBoard(boards[i]);
@@ -60,14 +59,14 @@ var Boards = function () {
         $(".button-create").hide();
         $(".button-card").show();
         $(".back_button").show();
-        $("#pina").show();
+        $("#table_for_cards").show();
         mystorage.getCards();
     };
     this.backButtonListener = function () {
         $("#boards").html("");
         $(".button-card").hide();
         $(".back_button").hide();
-        $("#pina").hide();
+        $("#table_for_cards").hide();
         mystorage.getBoards();
     };
 };
@@ -98,8 +97,9 @@ var Cards = function (){
         mystorage.getCards();
     };
     this.cardLister = function (cards) {
-        $("#pina").html("");
+        $("#table_for_cards").html("");
         $("#boards").html("");
+        $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
                 if (boards.actualBoardId == cards[i].board_id) {
@@ -110,11 +110,11 @@ var Cards = function (){
     };
     this.displayCard = function (card) {
         var div = document.createElement("tr");
-        var table = document.getElementById("pina");
+        var table = document.getElementById("table_for_cards");
         div.innerHTML = "+ " + card.name;
         div.setAttribute('class', 'card');
         div.setAttribute('id', card.board_id);
-        $("#pina").append(div);
+        $("#table_for_cards").append(div);
     };
 };
 
@@ -126,25 +126,19 @@ var localStorageClearer = function () {
     } else {
 
     }
-
-
 };
 
 var boards = new Boards();
 var mystorage = new myStorage( new myLocalStorageDatabase());
 var cards = new Cards();
 
-
-
 $(document).ready(function() {
-    $("#pina").hide();
+    $("#table_for_cards").hide();
     $(".back_button").hide();
     $(".button-card").hide();
     mystorage.getBoards();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
-    //$(".button").click(boards.clickOnBoardEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
-    $(".back_button").click(boards.backButtonListener);
     $(".button_delete").click(localStorageClearer);
 
 });
