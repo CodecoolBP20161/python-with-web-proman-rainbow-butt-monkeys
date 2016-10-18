@@ -39,13 +39,24 @@ class Boards(BaseModel):
 
 
 class Cards(BaseModel):
-    board_id = ForeignKeyField(Boards, related_name="cards")
+    board_id = CharField()
     name = CharField()
     #status = TextField()
 
     @classmethod
-    def get_cards(cls, id):
-        return cls.select().where(cls.board_id == id)
+    def get_cards(cls):
+        data = cls.select(cls.name, cls.board_id)
+        if data != []:
+            list = []
+            for i in data:
+                dict = {}
+                dict['board_id'] = i.board_id
+                dict['name'] = i.name
+                list.append(dict)
+            return list
+        else:
+            print("hülye vagy fiam")
+            pass
 
     @classmethod
     def save_card(cls, id, name):

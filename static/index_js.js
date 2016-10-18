@@ -56,20 +56,19 @@ var Boards = function () {
     };
     this.clickOnBoardEventHandler = function (targetid) {
         self.actualBoardId = targetid;
-        console.log("in board", targetid);
         $(this).css('background-color', 'grey');
         $(".button-create").hide();
         $(".button-card").show();
         $(".back_button").show();
         $("#pina").show();
-        mystorage.getCards(targetid);
+        mystorage.getCards();
     };
     this.backButtonListener = function () {
         $("#boards").html("");
         $(".button-card").hide();
         $(".back_button").hide();
         $("#pina").hide();
-        self.boardLister();
+        mystorage.getBoards();
     };
 };
 
@@ -96,15 +95,16 @@ var Cards = function (){
         if (new_board != null) {
             mystorage.saveCard(new_card);
         }
-        self.cardLister(boards.actualBoardId);
+        mystorage.getCards();
     };
     this.cardLister = function (cards) {
         $("#pina").html("");
         $("#boards").html("");
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
-                if (board_id == cards[i].board_id)
-                self.displayCard(cards[i]);
+                if (boards.actualBoardId == cards[i].board_id) {
+                    self.displayCard(cards[i]);
+                }
             }
         }
     };

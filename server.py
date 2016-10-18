@@ -20,17 +20,17 @@ def save_board():
     board = request.get_json(silent=True)
     new_board = Boards.save_board(board)
 
-@app.route('/cards', methods=['GET'])
+@app.route('/getcards', methods=['POST'])
 def get_cards():
-    board_id = request.get_json(silent=True)
-    print("Card board id" ,board_id)
-    cards = Cards.get_cards(board_id)
+    cards = Cards.get_cards()
+    print(cards)
     json_cards = json.dumps(cards)
     return json_cards
 
-@app.route('/cards', methods=['PUT'])
-def save_card(board_id, name):
-    card = Cards.save_card(board_id, name)
+@app.route('/cards', methods=['POST'])
+def save_card():
+    fromjson = request.get_json(silent=True)
+    card = Cards.save_card(fromjson["board_id"], fromjson["name"])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

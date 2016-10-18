@@ -70,7 +70,7 @@ var myLocalStorageDatabase = function () {
 
     this.saveCard = function (card) {
         $.ajax({
-          type: "PUT",
+          type: "POST",
           url: '/cards',
           data: JSON.stringify(card),
             contentType: 'application/json; charset=utf-8',
@@ -82,11 +82,11 @@ var myLocalStorageDatabase = function () {
 
     };
 
-    this.getCards = function (id) {
+    this.getCards = function () {
         $.ajax( {
-            url: '/cards',
+            type: "POST",
+            url: '/getcards',
             async: false,
-            data: JSON.stringify(id),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function (json) {
