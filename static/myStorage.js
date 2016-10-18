@@ -50,11 +50,11 @@ var myLocalStorageDatabase = function () {
             url: '/boards',
             data: JSON.stringify(board),
             contentType: 'application/json; charset=utf-8',
-            success: function () {
-              console.log("success board")
+            success: function () {;
             },
             dataType: 'json'
         });
+        this.getBoards();
     };
     this.getBoards = function () {
         $.ajax( {
