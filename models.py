@@ -12,11 +12,49 @@ class BaseModel(Model):
 
 
 class Boards(BaseModel):
-    id = IntegerField()
-    name = TextField()
+    name = CharField()
+    board_id = CharField(255)
+
+    @classmethod  # converting obj to dict for the json
+    def get_boards(cls):
+        boards = cls.select(cls.name, cls.board_id)
+        if boards != []:
+            list_of_boards = []
+            for i in boards:
+                dict_of_boards = {}
+                dict_of_boards['board_id'] = i.board_id
+                dict_of_boards['name'] = i.name
+                list_of_boards.append(dict_of_boards)
+            return list_of_boards
+        else:
+            pass
+
+    @classmethod
+    def save_board(cls, board):
+        print(board['board_id'])
+        print(board['name'])
+        cls.create(board_id=board['board_id'], name=board['name'])
 
 
 class Cards(BaseModel):
-    id = ForeignKeyField(Boards, related_name="cards")
-    name = TextField()
-    status = TextField()
+    board_id = CharField(255)
+    name = CharField()
+    #status = TextField()
+
+    @classmethod
+    def get_cards(cls):
+        cards = cls.select(cls.name, cls.board_id)
+        if cards != []:
+            list_of_cards = []
+            for i in cards:
+                dict_of_cards = {}
+                dict_of_cards['board_id'] = i.board_id
+                dict_of_cards['name'] = i.name
+                list_of_cards.append(dict_of_cards)
+            return list_of_cards
+        else:
+            pass
+
+    @classmethod
+    def save_card(cls, id, name):
+        cls.create(board_id=id, name=name)
