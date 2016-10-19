@@ -105,7 +105,7 @@ var Cards = function (){
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
-                if (boards.actualBoardId == cards[i].board_id) {
+                if ((boards.actualBoardId == cards[i].board_id) && (cards[i].status = " ")) {
                     self.displayCard(cards[i]);
                 }
             }

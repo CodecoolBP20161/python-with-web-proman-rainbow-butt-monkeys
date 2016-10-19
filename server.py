@@ -30,6 +30,7 @@ def get_cards():
 @app.route('/savecard', methods=['POST'])
 def save_card():
     fromjson = request.get_json(silent=True)
+    print(fromjson)
     card = Cards.save_card(fromjson["board_id"], fromjson["name"])
 
 if __name__ == '__main__':

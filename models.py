@@ -39,7 +39,7 @@ class Boards(BaseModel):
 class Cards(BaseModel):
     board_id = CharField(255)
     name = CharField()
-    #status = TextField()
+    status = CharField()
 
     @classmethod
     def get_cards(cls):
@@ -50,6 +50,7 @@ class Cards(BaseModel):
                 dict_of_cards = {}
                 dict_of_cards['board_id'] = i.board_id
                 dict_of_cards['name'] = i.name
+                dict_of_cards["status"] = i.status
                 list_of_cards.append(dict_of_cards)
             return list_of_cards
         else:
@@ -57,4 +58,4 @@ class Cards(BaseModel):
 
     @classmethod
     def save_card(cls, id, name):
-        cls.create(board_id=id, name=name)
+        cls.create(board_id=id, name=name, status=" ")
