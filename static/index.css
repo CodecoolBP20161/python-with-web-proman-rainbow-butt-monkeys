@@ -107,3 +107,23 @@
     width: 500px;
     height: 200px;
 }
+
+
+#new, #in-progress, #review, #done {
+    background-color: aquamarine;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    position: relative;
+
+
+}
+ #tasks {
+     background-color: bisque;
+ }
+
+ #rows {
+     margin-left: 20%;
+    margin-right: auto;
+ }
+

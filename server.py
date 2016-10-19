@@ -18,6 +18,7 @@ def get_boards():
 @app.route('/boards', methods=['PUT'])
 def save_board():
     board = request.get_json(silent=True)
+    print(type(board))
     new_board = Boards.save_board(board)
 
 @app.route('/getcards', methods=['POST'])
