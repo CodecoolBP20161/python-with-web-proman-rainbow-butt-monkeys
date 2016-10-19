@@ -1,7 +1,8 @@
 /**
  * Created by makaimark on 2016.10.03..
  */
-dragula([document.getElementById("boards"), document.getElementById("test")]);
+dragula([document.getElementById("table_for_cards"), document.getElementById("new"),
+    document.getElementById("in_progress"), document.getElementById("review"), document.getElementById("done")]);
 
 var Boards = function () {
     var self = this;
@@ -60,6 +61,7 @@ var Boards = function () {
         $(".button-card").show();
         $(".back_button").show();
         $("#table_for_cards").show();
+        $(".container-fluid").show();
         mystorage.getCards();
     };
     this.backButtonListener = function () {
@@ -67,6 +69,7 @@ var Boards = function () {
         $(".button-card").hide();
         $(".back_button").hide();
         $("#table_for_cards").hide();
+        $(".container-fluid").hide();
         mystorage.getBoards();
     };
 };
@@ -137,6 +140,7 @@ $(document).ready(function() {
     $("#table_for_cards").hide();
     $(".back_button").hide();
     $(".button-card").hide();
+    $(".container-fluid").hide();
     mystorage.getBoards();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
