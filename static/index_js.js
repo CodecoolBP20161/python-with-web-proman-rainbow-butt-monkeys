@@ -2,7 +2,7 @@
  * Created by makaimark on 2016.10.03..
  */
 dragula([document.getElementById("table_for_cards"), document.getElementById("new"),
-    document.getElementById("in_progress"), document.getElementById("review"), document.getElementById("done")]);
+    document.getElementById("in-progress"), document.getElementById("review"), document.getElementById("done")]);
 
 var Boards = function () {
     var self = this;
@@ -112,11 +112,12 @@ var Cards = function (){
         }
     };
     this.displayCard = function (card) {
-        var div = document.createElement("tr");
-        var table = document.getElementById("table_for_cards");
-        div.innerHTML = "+ " + card.name;
-        div.setAttribute('class', 'card');
-        div.setAttribute('id', card.board_id);
+        var div = document.createElement("div");
+        var tr = document.createElement("tr");
+        tr.innerHTML = "+ " + card.name;
+        tr.setAttribute('class', 'card');
+        tr.setAttribute('id', card.board_id);
+        div.appendChild(tr);
         $("#table_for_cards").append(div);
     };
 };
