@@ -20,6 +20,7 @@ def save_board():
     board = request.get_json(silent=True)
     print(type(board))
     new_board = Boards.save_board(board)
+    return ""
 
 @app.route('/getcards', methods=['POST'])
 def get_cards():
@@ -29,9 +30,15 @@ def get_cards():
 
 @app.route('/savecard', methods=['POST'])
 def save_card():
+    status_list = ["new", "done", "in-progress", "review"]
     fromjson = request.get_json(silent=True)
     print(fromjson)
-    card = Cards.save_card(fromjson["board_id"], fromjson["name"])
+    if "status" in fromjson:
+        if fromjson['status'] in status_list:
+            update_card = Cards.update_card(fromjson["status"], fromjson["cardName"])
+    else:
+        card = Cards.save_card(fromjson["board_id"], fromjson["name"])
+    return ""
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

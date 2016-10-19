@@ -78,6 +78,7 @@ var myLocalStorageDatabase = function () {
     };
 
     this.saveCard = function (card) {
+        console.log(JSON.stringify(card));
         $.ajax({
           type: "POST",
           url: '/savecard',

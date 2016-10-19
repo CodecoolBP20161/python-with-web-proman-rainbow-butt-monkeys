@@ -76,6 +76,7 @@ var Boards = function () {
         $(".back_button").hide();
         $("#table_for_cards").hide();
         $(".container-fluid").hide();
+        $(".save_card_button").hide();
         mystorage.getBoards();
     };
 };
@@ -86,6 +87,7 @@ var Cards = function (){
     this.Card = function (name, board_id){
         this.name = name;
         this.board_id = board_id;
+        this.status = "nothing";
     };
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
@@ -111,21 +113,33 @@ var Cards = function (){
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
-                if ((boards.actualBoardId == cards[i].board_id) && (cards[i].status = " ")) {
+                if ((boards.actualBoardId == cards[i].board_id) && (cards[i].status == "nothing")) {
                     self.displayCard(cards[i]);
                 }
             }
         }
+        $(".save_card_button").show();
+        $(".save_card_button").click(self.clickOnSaveCardEventHandler);
     };
     this.displayCard = function (card) {
         var div = document.createElement("div");
         var tr = document.createElement("tr");
-        tr.innerHTML = "+ " + card.name;
+        tr.innerHTML = card.name;
         tr.setAttribute('class', 'card');
         tr.setAttribute('id', card.board_id);
         div.appendChild(tr);
         $("#table_for_cards").append(div);
     };
+    this.clickOnSaveCardEventHandler = function(){
+        for ( var i = 0; i < document.getElementsByClassName("card").length; i++){
+            // cards.push(document.getElementsByClassName("card")[i]);
+            var element = document.getElementsByClassName("card")[i].closest(".col-centered");
+            var status = element.getAttribute("id");
+            var cardName = document.getElementsByClassName("card")[i].innerHTML;
+            var vars = {status:status, cardName:cardName};
+            mystorage.saveCard(vars)
+        }
+    }
 };
 
 var localStorageClearer = function () {
@@ -138,7 +152,6 @@ var localStorageClearer = function () {
     }
 };
 
-
 var boards = new Boards();
 var mystorage = new myStorage( new myLocalStorageDatabase());
 var cards = new Cards();
@@ -148,6 +161,7 @@ $(document).ready(function() {
     $(".back_button").hide();
     $(".button-card").hide();
     $(".container-fluid").hide();
+    $(".save_card_button").hide();
     mystorage.getBoards();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);

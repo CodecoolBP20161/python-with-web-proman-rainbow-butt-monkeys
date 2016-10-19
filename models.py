@@ -31,8 +31,6 @@ class Boards(BaseModel):
 
     @classmethod
     def save_board(cls, board):
-        print(board['board_id'])
-        print(board['name'])
         cls.create(board_id=board['board_id'], name=board['name'])
 
 
@@ -43,7 +41,7 @@ class Cards(BaseModel):
 
     @classmethod
     def get_cards(cls):
-        cards = cls.select(cls.name, cls.board_id)
+        cards = cls.select(cls.name, cls.board_id, cls.status)
         if cards != []:
             list_of_cards = []
             for i in cards:
@@ -58,4 +56,9 @@ class Cards(BaseModel):
 
     @classmethod
     def save_card(cls, id, name):
-        cls.create(board_id=id, name=name, status=" ")
+        cls.create(board_id=id, name=name, status="nothing")
+
+    @classmethod
+    def update_card(cls, status, name):
+        card = cls.update(status=status).where(name == cls.name)
+        card.execute()
