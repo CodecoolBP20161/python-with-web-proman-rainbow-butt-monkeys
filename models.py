@@ -17,19 +17,17 @@ class Boards(BaseModel):
 
     @classmethod  # converting obj to dict for the json
     def get_boards(cls):
-        data = cls.select(cls.name, cls.board_id)
-        if data != []:
-            list = []
-            for i in data:
-                dict = {}
-                dict['board_id'] = i.board_id
-                dict['name'] = i.name
-                list.append(dict)
-            return list
+        boards = cls.select(cls.name, cls.board_id)
+        if boards != []:
+            list_of_boards = []
+            for i in boards:
+                dict_of_boards = {}
+                dict_of_boards['board_id'] = i.board_id
+                dict_of_boards['name'] = i.name
+                list_of_boards.append(dict_of_boards)
+            return list_of_boards
         else:
-            print("hülye vagy fiam")
             pass
-
 
     @classmethod
     def save_board(cls, board):
@@ -39,13 +37,23 @@ class Boards(BaseModel):
 
 
 class Cards(BaseModel):
-    board_id = ForeignKeyField(Boards, related_name="cards")
+    board_id = CharField(255)
     name = CharField()
     #status = TextField()
 
     @classmethod
-    def get_cards(cls, id):
-        return cls.select().where(cls.board_id == id)
+    def get_cards(cls):
+        cards = cls.select(cls.name, cls.board_id)
+        if cards != []:
+            list_of_cards = []
+            for i in cards:
+                dict_of_cards = {}
+                dict_of_cards['board_id'] = i.board_id
+                dict_of_cards['name'] = i.name
+                list_of_cards.append(dict_of_cards)
+            return list_of_cards
+        else:
+            pass
 
     @classmethod
     def save_card(cls, id, name):
