@@ -105,10 +105,12 @@ var Cards = function (){
         if (new_board != null) {
             mystorage.saveCard(new_card);
         }
-        mystorage.getCards();
+        console.log(new_card);
+        self.displayCard(new_card);
     };
     this.cardLister = function (cards) {
         $("#table_for_cards").html("");
+        //$(".cardClass").html("");
         $("#boards").html("");
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
@@ -123,6 +125,7 @@ var Cards = function (){
     };
     this.displayCard = function (card) {
         var div = document.createElement("div");
+        div.setAttribute("class", "cardClass");
         var tr = document.createElement("tr");
         tr.innerHTML = card.name;
         tr.setAttribute('class', 'card');
