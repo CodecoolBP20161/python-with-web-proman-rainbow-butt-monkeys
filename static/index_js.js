@@ -1,7 +1,7 @@
 /**
  * Created by makaimark on 2016.10.03..
  */
-
+dragula([document.getElementById("boards"), document.getElementById("test")]);
 
 var Boards = function () {
     var self = this;
