@@ -7,6 +7,8 @@
     margin: 25px;
     position: relative;
 }
+
+
 .button, .delete_button, .back_button{
     background-color: silver; /* Green */
     border: solid;
@@ -90,4 +92,18 @@
 
 .col-md-12 {
     margin: auto;
+}
+
+#test {
+    background: #cc0000;
+    width: 500px;
+    height: 200px;
+    position: fixed;
+    bottom: 0px;
+}
+
+#boards {
+    background-color: #942A57;
+    width: 500px;
+    height: 200px;
 }
