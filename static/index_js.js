@@ -107,7 +107,7 @@ var Cards = function (){
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
-                if ((boards.actualBoardId == cards[i].board_id) && (cards[i].status == "nothing")) {
+                if (boards.actualBoardId == cards[i].board_id) {
                     self.displayCard(cards[i]);
                 }
             }
@@ -122,7 +122,17 @@ var Cards = function (){
         tr.setAttribute('class', 'card');
         tr.setAttribute('id', card.board_id);
         div.appendChild(tr);
-        $("#table_for_cards").append(div);
+        if (card.status == "nothing"){
+            $("#table_for_cards").append(div);
+        } else if (card.status == "new"){
+            $("#new").append(div);
+        } else if (card.status == "in-progress"){
+            $("#in-progress").append(div);
+        }else if (card.status == "review"){
+            $("#review").append(div);
+        } else if (card.status == "done"){
+            $("#done").append(div);
+        }
     };
     this.clickOnSaveCardEventHandler = function(){
         for ( var i = 0; i < document.getElementsByClassName("card").length; i++){
