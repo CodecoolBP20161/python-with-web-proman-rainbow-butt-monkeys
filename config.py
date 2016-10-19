@@ -1,4 +1,4 @@
-name = "makaimark"
-dbname = "proman_database"
+name = "svindler"
+dbname = "proman"
 host = "localhost"
-password = "920410"
+password = "codecool"

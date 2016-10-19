@@ -1,8 +1,14 @@
 /**
  * Created by makaimark on 2016.10.03..
  */
-dragula([document.getElementById("table_for_cards"), document.getElementById("new"),
-    document.getElementById("in-progress"), document.getElementById("review"), document.getElementById("done")]);
+dragula([document.getElementById("table_for_cards"),
+        document.getElementById("new"),
+        document.getElementById("in-progress"),
+        document.getElementById("review"),
+        document.getElementById("done")], {
+          removeOnSpill: true            // spilling will `.remove` the element, if this is true
+        });
+
 
 var Boards = function () {
     var self = this;
