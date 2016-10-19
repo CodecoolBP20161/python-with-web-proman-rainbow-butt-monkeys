@@ -70,6 +70,7 @@ var Boards = function () {
         $(".back_button").hide();
         $("#table_for_cards").hide();
         $(".container-fluid").hide();
+        $(".save_card_button").hide();
         mystorage.getBoards();
     };
 };
@@ -110,6 +111,8 @@ var Cards = function (){
                 }
             }
         }
+        $(".save_card_button").show();
+        $(".save_card_button").click(self.clickOnSaveCardEventHandler);
     };
     this.displayCard = function (card) {
         var div = document.createElement("div");
@@ -120,6 +123,15 @@ var Cards = function (){
         div.appendChild(tr);
         $("#table_for_cards").append(div);
     };
+    this.clickOnSaveCardEventHandler = function(){
+        for ( var i = 0; i < document.getElementsByClassName("card").length; i++){
+            // cards.push(document.getElementsByClassName("card")[i]);
+            var element = document.getElementsByClassName("card")[i].closest(".col-centered");
+            var status = element.getAttribute("id");
+            var card_name = document.getElementsByClassName("card")[i].innerHTML;
+            console.log(status, card_name);
+        }
+    }
 };
 
 var localStorageClearer = function () {
@@ -132,7 +144,6 @@ var localStorageClearer = function () {
     }
 };
 
-
 var boards = new Boards();
 var mystorage = new myStorage( new myLocalStorageDatabase());
 var cards = new Cards();
@@ -142,6 +153,7 @@ $(document).ready(function() {
     $(".back_button").hide();
     $(".button-card").hide();
     $(".container-fluid").hide();
+    $(".save_card_button").hide();
     mystorage.getBoards();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
