@@ -18,7 +18,6 @@ def get_boards():
 @app.route('/boards', methods=['PUT'])
 def save_board():
     board = request.get_json(silent=True)
-    print(type(board))
     new_board = Boards.save_board(board)
     return ""
 
@@ -33,12 +32,12 @@ def save_card():
     status_list = ["new", "done", "in-progress", "review"]
     fromjson = request.get_json(silent=True)
     print(fromjson)
-    if "status" in fromjson:
+    if fromjson["status"] != 'nothing':
         if fromjson['status'] in status_list:
             update_card = Cards.update_card(fromjson["status"], fromjson["cardName"])
     else:
+        print(fromjson)
         card = Cards.save_card(fromjson["board_id"], fromjson["name"])
-    return ""
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
