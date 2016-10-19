@@ -81,6 +81,7 @@ var Cards = function (){
     this.Card = function (name, board_id){
         this.name = name;
         this.board_id = board_id;
+        this.status = "nothing";
     };
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
@@ -106,7 +107,7 @@ var Cards = function (){
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
             for (var i = 0; i < cards.length; i++) {
-                if ((boards.actualBoardId == cards[i].board_id) && (cards[i].status = " ")) {
+                if ((boards.actualBoardId == cards[i].board_id) && (cards[i].status == "nothing")) {
                     self.displayCard(cards[i]);
                 }
             }
@@ -117,7 +118,7 @@ var Cards = function (){
     this.displayCard = function (card) {
         var div = document.createElement("div");
         var tr = document.createElement("tr");
-        tr.innerHTML = "+ " + card.name;
+        tr.innerHTML = card.name;
         tr.setAttribute('class', 'card');
         tr.setAttribute('id', card.board_id);
         div.appendChild(tr);
@@ -128,8 +129,9 @@ var Cards = function (){
             // cards.push(document.getElementsByClassName("card")[i]);
             var element = document.getElementsByClassName("card")[i].closest(".col-centered");
             var status = element.getAttribute("id");
-            var card_name = document.getElementsByClassName("card")[i].innerHTML;
-            console.log(status, card_name);
+            var cardName = document.getElementsByClassName("card")[i].innerHTML;
+            var vars = {status:status, cardName:cardName};
+            mystorage.saveCard(vars)
         }
     }
 };
