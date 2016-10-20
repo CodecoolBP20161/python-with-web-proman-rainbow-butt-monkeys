@@ -38,11 +38,13 @@ def save_card():
     else:
         print(fromjson)
         card = Cards.save_card(fromjson["board_id"], fromjson["name"], fromjson["cardId"])
+    return ""
 
 @app.route('/deletecard', methods=['POST'])
 def delete_card():
     fromjson = request.get_json()
     Cards.delete_card(fromjson)
+    return ""
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
