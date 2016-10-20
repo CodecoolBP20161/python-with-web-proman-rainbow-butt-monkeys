@@ -42,7 +42,7 @@ class Cards(BaseModel):
 
     @classmethod
     def get_cards(cls):
-        cards = cls.select(cls.name, cls.board_id, cls.status)
+        cards = cls.select(cls.name, cls.board_id, cls.status, cls.card_id)
         if cards != []:
             list_of_cards = []
             for i in cards:
@@ -50,6 +50,7 @@ class Cards(BaseModel):
                 dict_of_cards['board_id'] = i.board_id
                 dict_of_cards['name'] = i.name
                 dict_of_cards["status"] = i.status
+                dict_of_cards["cardId"] = i.card_id
                 list_of_cards.append(dict_of_cards)
             return list_of_cards
         else:
@@ -62,4 +63,10 @@ class Cards(BaseModel):
     @classmethod
     def update_card(cls, status, name):
         card = cls.update(status=status).where(name == cls.name)
+        card.execute()
+
+    @classmethod
+    def delete_card(cls, card_id):
+        print('itt bent vagyok')
+        card = cls.delete().where(card_id == cls.card_id)
         card.execute()

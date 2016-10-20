@@ -42,7 +42,7 @@ def save_card():
 @app.route('/deletecard', methods=['POST'])
 def delete_card():
     fromjson = request.get_json()
-    print(fromjson)
+    Cards.delete_card(fromjson)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

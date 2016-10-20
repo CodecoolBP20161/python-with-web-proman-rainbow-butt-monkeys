@@ -125,7 +125,6 @@ var Cards = function (){
         $(".save_card_button").click(self.clickOnSaveCardEventHandler);
     };
     this.displayCard = function (card) {
-        console.log(card)
         var div = document.createElement("div");
         div.setAttribute("class", "cardClass");
         var tr = document.createElement("tr");
@@ -158,12 +157,9 @@ var Cards = function (){
         }
     };
 
-    this.deleteCardEventHandler = function (lol) {
-        console.log(lol);
-        console.log('clicked');
-        $('.button').on('click', function (event) {
-            deleteCard(event.target.id)
-        });
+    this.deleteCardEventHandler = function (card) {
+        deleteCard(card);
+        mystorage.getCards()
     }
 };
 
@@ -185,14 +181,15 @@ function addDeleteButton() {
     element.type = "button";
     element.id = "delete-card-button";
     element.name = "button";
-    return element}
+    return element
+}
 
 
-function deleteCard(board_id) {
+function deleteCard(cardId) {
     $.ajax({
     type: "POST",
     url: '/deletecard',
-    data: JSON.stringify(board_id),
+    data: JSON.stringify(cardId),
     contentType: 'application/json; charset=utf-8',
     dataType: 'json'
     });
@@ -213,7 +210,8 @@ $(document).ready(function() {
     $("#save_card_button").click(cards.saveCardClickEventHandler);
     $(document).on('click', '#delete-card-button', function () {
         var parent = $(this).closest("tr");
-        console.log($(parent).attr('card-id'))
+        card = (parent).attr('card-id');
+        cards.deleteCardEventHandler(card)
     });
     $(".button_delete").click(localStorageClearer);
 
