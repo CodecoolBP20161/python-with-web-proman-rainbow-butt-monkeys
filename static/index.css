@@ -9,7 +9,7 @@
 }
 
 
-.button, .delete_button, .back_button, .save_card_button{
+.button, .delete_button, .back_button {
     background-color: silver; /* Green */
     border: solid;
     color: white;
@@ -27,10 +27,43 @@
 
 }
 .back_button {
-    background-color: cornflowerblue;
+    background-color: lightgrey;
+    color: black;
+    border-style: none;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    margin-left: 80%;
+}
+
+.save_card_button {
+    background-color: darkseagreen;
+    color: white;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 13%;
+
+}
+
+.save_card_button:hover {
+    background-color: darkgreen;
+
+}
+.back_button:hover {
+    background-color: #85C1E9;
+    border-color: transparent;
+    color: white;
+
 }
 .button-create, .button-card{
-    background-color: darkseagreen; /* Green */
+    background-color: darkseagreen;
+    border-radius: 8px;
     border: solid;
     color: white;
     text-align: center;
@@ -45,7 +78,8 @@
 
 }
 .button_delete {
-    background-color: darkred; /* Green */
+    background-color: darkred;
+    border-radius: 8px;
     border: solid;
     color: white;
     text-align: center;
@@ -53,7 +87,7 @@
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     padding: 10px 28px;
 }
@@ -80,14 +114,13 @@
 }
 
 .card {
-    background-color:black; /* Green */
     border: solid;
-    color: white;
     text-align: center;
     display: inline-block;
     text-decoration: none;
     font-size: 14px;
     padding: 10px 28px;
+    cursor: pointer;
 }
 
 .col-md-12 {
@@ -95,19 +128,55 @@
 }
 
 
-#new, #in-progress, #review, #done {
-    background-color: aquamarine;
+#new {
+    background-color: #FCF3CF ;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    position: relative;
+}
+
+#in-progress {
+    background-color: #F5B7B1;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    position: relative;
+}
+
+#review {
+    background-color: #DCEDC8;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    position: relative;
+}
+
+ #done {
+    background-color: #AED6F1;
     text-align: center;
     padding: 10px 10px 10px 10px;
     margin: 10px 10px 10px 10px;
     position: relative;
 
-
 }
- #tasks {
-     background-color: bisque;
+ #review, #done, #in-progress, #new {
+     border-radius: 8px;
  }
 
+#new:hover {
+     background-color: #F9E79F;
+ }
+#in-progress:hover {
+    background-color: #F1948A;
+}
+
+#review:hover {
+    background-color: #C5E1A5;
+}
+#done:hover {
+    background-color: #85C1E9;
+}
 .row-centered {
     text-align: center;
 }
@@ -119,4 +188,19 @@
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+.card {
+    border-radius: 8px;
+    background-color: transparent;
+    color: black;
+    border-width: thin;
+}
+
+#delete-card-button {
+    border-color: transparent;
+    background-color: transparent;
+    padding-left: 10px;
+    color: black;
+    font-weight: bold;
 }
