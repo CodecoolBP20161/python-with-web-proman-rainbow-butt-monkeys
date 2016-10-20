@@ -37,7 +37,12 @@ def save_card():
             update_card = Cards.update_card(fromjson["status"], fromjson["cardName"])
     else:
         print(fromjson)
-        card = Cards.save_card(fromjson["board_id"], fromjson["name"])
+        card = Cards.save_card(fromjson["board_id"], fromjson["name"], fromjson["cardId"])
+
+@app.route('/deletecard', methods=['POST'])
+def delete_card():
+    fromjson = request.get_json()
+    print(fromjson)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

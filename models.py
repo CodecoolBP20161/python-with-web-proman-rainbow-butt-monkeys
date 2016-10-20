@@ -38,6 +38,7 @@ class Cards(BaseModel):
     board_id = CharField(255)
     name = CharField()
     status = CharField()
+    card_id = CharField(255)
 
     @classmethod
     def get_cards(cls):
@@ -55,8 +56,8 @@ class Cards(BaseModel):
             pass
 
     @classmethod
-    def save_card(cls, id, name):
-        cls.create(board_id=id, name=name, status="nothing")
+    def save_card(cls, id, name, card_id):
+        cls.create(board_id=id, name=name, status="nothing", card_id=card_id)
 
     @classmethod
     def update_card(cls, status, name):

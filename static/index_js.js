@@ -6,7 +6,6 @@ dragula([document.getElementById("table_for_cards"),
         document.getElementById("in-progress"),
         document.getElementById("review"),
         document.getElementById("done")], {
-          removeOnSpill: true            // spilling will `.remove` the element, if this is true
         });
 
 
@@ -32,7 +31,7 @@ var Boards = function () {
         }
     };
     this.displayBoard = function (board) {
-        var div = document.createElement("button");
+        var div = document.createElement("div");
         div.innerHTML = board.name;
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', board.board_id);
@@ -88,6 +87,8 @@ var Cards = function (){
         this.name = name;
         this.board_id = board_id;
         this.status = "nothing";
+        this.cardId = Date.now();
+
     };
     this.handleNewCardName = function () {
         $('#myModal_card').modal('toggle');
@@ -124,13 +125,16 @@ var Cards = function (){
         $(".save_card_button").click(self.clickOnSaveCardEventHandler);
     };
     this.displayCard = function (card) {
+        console.log(card)
         var div = document.createElement("div");
         div.setAttribute("class", "cardClass");
         var tr = document.createElement("tr");
         tr.innerHTML = card.name;
         tr.setAttribute('class', 'card');
         tr.setAttribute('id', card.board_id);
+        tr.setAttribute('card-id', card.cardId);
         div.appendChild(tr);
+        tr.appendChild(addDeleteButton());
         if (card.status == "nothing"){
             $("#table_for_cards").append(div);
         } else if (card.status == "new"){
@@ -152,6 +156,14 @@ var Cards = function (){
             var vars = {status:status, cardName:cardName};
             mystorage.saveCard(vars)
         }
+    };
+
+    this.deleteCardEventHandler = function (lol) {
+        console.log(lol);
+        console.log('clicked');
+        $('.button').on('click', function (event) {
+            deleteCard(event.target.id)
+        });
     }
 };
 
@@ -164,6 +176,27 @@ var localStorageClearer = function () {
 
     }
 };
+
+function addDeleteButton() {
+    //Create an input type dynamically.
+    var element = document.createElement("button");
+    buttonText = document.createTextNode("X");
+    element.appendChild(buttonText);
+    element.type = "button";
+    element.id = "delete-card-button";
+    element.name = "button";
+    return element}
+
+
+function deleteCard(board_id) {
+    $.ajax({
+    type: "POST",
+    url: '/deletecard',
+    data: JSON.stringify(board_id),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json'
+    });
+}
 
 var boards = new Boards();
 var mystorage = new myStorage( new myLocalStorageDatabase());
@@ -178,6 +211,10 @@ $(document).ready(function() {
     mystorage.getBoards();
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
+    $(document).on('click', '#delete-card-button', function () {
+        var parent = $(this).closest("tr");
+        console.log($(parent).attr('card-id'))
+    });
     $(".button_delete").click(localStorageClearer);
 
 });
