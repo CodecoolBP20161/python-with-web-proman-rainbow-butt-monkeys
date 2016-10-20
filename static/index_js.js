@@ -31,15 +31,19 @@ var Boards = function () {
         }
     };
     this.displayBoard = function (board) {
+        var outerdiv = document.createElement("div");
         var div = document.createElement("div");
         div.innerHTML = board.name;
         div.setAttribute('class', 'button button2');
         div.setAttribute('id', board.board_id);
-        $("#boards").append(div);
+        outerdiv.appendChild(div);
+        outerdiv.appendChild(addDeleteBoardButton());
+        $("#boards").append(outerdiv);
 
     };
 
     this.boardLister = function (boards) {
+        $("#boards").html("");
         if (boards != null) {
             for (var i = 0; i < boards.length; i++) {
                 self.displayBoard(boards[i]);
@@ -57,7 +61,7 @@ var Boards = function () {
         if (new_board != null) {
             mystorage.saveBoard(new_board);
         }
-        self.boardLister();
+        mystorage.getBoards();
     };
     this.clickOnBoardEventHandler = function (targetid) {
         self.actualBoardId = targetid;
@@ -70,6 +74,7 @@ var Boards = function () {
         mystorage.getCards();
     };
     this.backButtonListener = function () {
+        console.log("celear ruuun");
         $("#boards").html("");
         $(".button-card").hide();
         $(".back_button").hide();
@@ -78,6 +83,12 @@ var Boards = function () {
         $(".save_card_button").hide();
         mystorage.getBoards();
     };
+
+    this.deleteBoardEventHandler = function (board) {
+        deleteBoard(board);
+        mystorage.getBoards()
+    }
+
 };
 
 var Cards = function (){
@@ -111,7 +122,7 @@ var Cards = function (){
     };
     this.cardLister = function (cards) {
         $("#table_for_cards").html("");
-        //$(".cardClass").html("");
+        $(".cardClass").html("");
         $("#boards").html("");
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
@@ -125,15 +136,17 @@ var Cards = function (){
         $(".save_card_button").click(self.clickOnSaveCardEventHandler);
     };
     this.displayCard = function (card) {
+        // console.log(card);
         var div = document.createElement("div");
         div.setAttribute("class", "cardClass");
         var tr = document.createElement("tr");
         tr.innerHTML = card.name;
         tr.setAttribute('class', 'card');
+        tr.setAttribute('status', card.status);
         tr.setAttribute('id', card.board_id);
         tr.setAttribute('card-id', card.cardId);
         div.appendChild(tr);
-        tr.appendChild(addDeleteButton());
+        div.appendChild(addDeleteCardButton(card.cardId));
         if (card.status == "nothing"){
             $("#table_for_cards").append(div);
         } else if (card.status == "new"){
@@ -147,17 +160,30 @@ var Cards = function (){
         }
     };
     this.clickOnSaveCardEventHandler = function(){
-        for ( var i = 0; i < document.getElementsByClassName("card").length; i++){
+        var listOfCards =  document.getElementsByClassName("card");
+        for ( var i = 0; i < listOfCards.length; i++){
+            // console.log(listOfCards[i]);
             // cards.push(document.getElementsByClassName("card")[i]);
             var element = document.getElementsByClassName("card")[i].closest(".col-centered");
-            var status = element.getAttribute("id");
+            // console.log(element);
+            if (element.getAttribute("id") === null) {
+                console.log("NULL")
+            }
+            else {
+                var status = element.getAttribute("id");
+            }
+            // console.log(status);
             var cardName = document.getElementsByClassName("card")[i].innerHTML;
-            var vars = {status:status, cardName:cardName};
-            mystorage.saveCard(vars)
+            if (status != null) {
+                var vars = {status: status, cardName: cardName};
+                console.log(vars);
+                mystorage.saveCard(vars)
+            }
         }
     };
 
     this.deleteCardEventHandler = function (card) {
+        console.log(card);
         deleteCard(card);
         mystorage.getCards()
     }
@@ -173,13 +199,25 @@ var localStorageClearer = function () {
     }
 };
 
-function addDeleteButton() {
+function addDeleteCardButton(cardId) {
     //Create an input type dynamically.
     var element = document.createElement("button");
     buttonText = document.createTextNode("X");
     element.appendChild(buttonText);
     element.type = "button";
     element.id = "delete-card-button";
+    element.name = cardId;
+    console.log(element);
+    return element
+}
+
+function addDeleteBoardButton() {
+    //Create an input type dynamically.
+    var element = document.createElement("button");
+    buttonText = document.createTextNode("X");
+    element.appendChild(buttonText);
+    element.type = "button";
+    element.id = "delete-board-button";
     element.name = "button";
     return element
 }
@@ -189,6 +227,16 @@ function deleteCard(cardId) {
     $.ajax({
     type: "POST",
     url: '/deletecard',
+    data: JSON.stringify(cardId),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json'
+    });
+}
+
+function deleteBoard(cardId) {
+    $.ajax({
+    type: "POST",
+    url: '/deleteboard',
     data: JSON.stringify(cardId),
     contentType: 'application/json; charset=utf-8',
     dataType: 'json'
@@ -209,9 +257,14 @@ $(document).ready(function() {
     $("#save_board_button").click(boards.saveBoardClickEventHandler);
     $("#save_card_button").click(cards.saveCardClickEventHandler);
     $(document).on('click', '#delete-card-button', function () {
-        var parent = $(this).closest("tr");
-        card = (parent).attr('card-id');
-        cards.deleteCardEventHandler(card)
+        var parent = $(this).attr("name");
+        console.log(parent);
+        cards.deleteCardEventHandler(parent)
+    });
+    $(document).on('click', '#delete-board-button', function () {
+        var parent = $(this).prev();
+        board = (parent).attr('id');
+        boards.deleteBoardEventHandler(board)
     });
     $(".button_delete").click(localStorageClearer);
 

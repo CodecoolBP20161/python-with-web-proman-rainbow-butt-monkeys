@@ -33,6 +33,12 @@ class Boards(BaseModel):
     def save_board(cls, board):
         cls.create(board_id=board['board_id'], name=board['name'])
 
+    @classmethod
+    def delete_boards(cls, board):
+        board = cls.delete().where(board == cls.board_id)
+        board.execute()
+
+
 
 class Cards(BaseModel):
     board_id = CharField(255)
