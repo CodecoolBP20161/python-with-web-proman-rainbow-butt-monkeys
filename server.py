@@ -40,6 +40,7 @@ def save_card():
         card = Cards.save_card(fromjson["board_id"], fromjson["name"], fromjson["cardId"])
     return "success"
 
+
 @app.route('/deletecard', methods=['POST'])
 def delete_card():
     fromjson = request.get_json()
@@ -52,6 +53,7 @@ def delete_board():
     fromjson = request.get_json()
     Boards.delete_boards(fromjson)
     return "sucess"
+
 
 
 if __name__ == '__main__':
