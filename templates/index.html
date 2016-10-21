@@ -5,24 +5,15 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
 
-    <!-- jQuery library -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <!-- CSS file-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css"
+          integrity="sha256-iVhQxXOykHeL03K08zkxBGxDCLCuzRGGiTYf2FL6mLY=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="static/index.css">
 
-    <!-- Javascript file-->
-    <script type="text/javascript" src="static/myStorage.js"></script>
-    <script type="text/javascript" src="static/index_js.js"></script>
-
 </head>
-<body style="padding-top: 100px">
+
+
 <!-- Nav Bar  -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -71,7 +62,7 @@
         </div>
     </div>
 </div>
-<div class="container-custom" >
+<div class="container-custom">
 
     <div class="row">
         <div class="col-md-12" align="center">
@@ -81,15 +72,41 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="boards_table">
         <div class="col-md-12" align="center" id="boards">
         </div>
     </div>
     <div class="container">
-      <table class="table" id="pina">
-      </table>
-    </div>
+        <div class="table" id="table_for_cards">
         </div>
-        <button type="button" class="back_button">Back</button>
+    </div>
+    <div class="container-fluid" id="tasks">
+        <div class="row row-centered" id="rows">
+            <div class="col-centered col-md-2" id="new">NEW</div>
+            <div class="col-centered col-md-2" id="in-progress">IN PROGRESS</div>
+            <div class="col-centered col-md-2" id="review">REVIEW</div>
+            <div class="col-centered col-md-2" id="done">DONE</div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12" align="center">
+<button type="button" class="back_button">Back</button>
+<button type="button" class="save_card_button">Save</button>
+</div>
+
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"
+        integrity="sha256-ug4bHfqHFAj2B5MESRxbLd3R3wdVMQzug2KHZqFEmFI=" crossorigin="anonymous"></script>
+
+
+<!-- Javascript file-->
+<script type="text/javascript" src="static/myStorage.js"></script>
+<script type="text/javascript" src="static/index_js.js"></script>
 </body>
 </html>
