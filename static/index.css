@@ -9,7 +9,7 @@
 }
 
 
-.button, .delete_button, .back_button {
+.button, .delete_button {
     background-color: silver; /* Green */
     border: solid;
     color: white;
@@ -27,44 +27,45 @@
 
 }
 .back_button {
-    background-color: lightgrey;
-    color: black;
-    border-style: none;
     border-radius: 8px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    position: fixed;
-    margin-left: 80%;
+    margin: auto;
+    background-color: white;
+    color: black;
+    opacity: 0.7;
 }
 
 .save_card_button {
-    background-color: darkseagreen;
-    color: white;
     border-radius: 8px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-left: 13%;
-
+    margin: auto;
+    background-color: darkseagreen;
+    color: white;
+    opacity: 0.7;
 }
 
 .save_card_button:hover {
-    background-color: darkgreen;
+    background-color: darkseagreen;
+    opacity: 1;
+    border: 1px black solid;
+
 
 }
 .back_button:hover {
-    background-color: #85C1E9;
-    border-color: transparent;
-    color: white;
+    background-color: white;
+    opacity: 1;
+    border: solid black 1px;
 
 }
 .button-create, .button-card{
     background-color: darkseagreen;
     border-radius: 8px;
-    border: solid;
     color: white;
     text-align: center;
     display: inline-block;
@@ -80,7 +81,6 @@
 .button_delete {
     background-color: darkred;
     border-radius: 8px;
-    border: solid;
     color: white;
     text-align: center;
     display: inline-block;
@@ -92,8 +92,20 @@
     padding: 10px 28px;
 }
 
+.button2 {
+    background-color: darkgray;
+    border-width: 2px;
+    border-color: white;
+    opacity: 0.8;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    position: relative;
+}
+
 .button2:hover{
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 22px 26px 0 rgba(0,0,0,0.24), 0 27px 60px 0 rgba(0,0,0,0.19);
+    opacity: 1;
+
 }
 
 .button-create:hover, .button-card:hover{
@@ -103,13 +115,13 @@
 }
 
 .navbar-header {
-   left: 50%;
+   left: 4%;
    position: relative;
-   transform: translateX(-50%);
+   transform: translateX(-10%);
 }
 
 #logo{
-    width: 80%; /* you can use % */
+    width: 80%;
     height: auto;
 }
 
@@ -121,10 +133,13 @@
     font-size: 14px;
     padding: 10px 28px;
     cursor: pointer;
+    margin-left: 10%;
+    margin-bottom: 5px;
 }
 
-.col-md-12 {
-    margin: auto;
+#boards {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 
@@ -204,3 +219,26 @@
     color: black;
     font-weight: bold;
 }
+
+.navbar {
+    opacity: 0.7;
+}
+
+body{
+    height: 100%;
+    padding-top: 100px;
+    margin:0px;
+    background-image:url("monkey-hd-wallpaper_op_bw.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container-custom {
+    margin-top: 0;
+}
+
+
+/*.card-class {*/
+    /*display: inline-block;*/
+/*}*/
