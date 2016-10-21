@@ -1,2 +1,4 @@
-# python-with-web-proman
-This is the second exercise in the Python with Web module, see instructions in Canvas
+Create a database.
+complete the config template and rename it to config
+Run build.py
+Run server.py
