@@ -122,7 +122,7 @@ var Cards = function (){
     };
     this.cardLister = function (cards) {
         $("#table_for_cards").html("");
-        $(".cardClass").html("");
+        $(".card-class").html("");
         $("#boards").html("");
         $(".back_button").click(boards.backButtonListener);
         if (cards != null) {
@@ -138,8 +138,8 @@ var Cards = function (){
     this.displayCard = function (card) {
         // console.log(card);
         var div = document.createElement("div");
-        div.setAttribute("class", "cardClass");
-        var tr = document.createElement("tr");
+        div.setAttribute("class", "card-class");
+        var tr = document.createElement("div");
         tr.innerHTML = card.name;
         tr.setAttribute('class', 'card');
         tr.setAttribute('status', card.status);

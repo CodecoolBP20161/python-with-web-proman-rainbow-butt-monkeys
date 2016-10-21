@@ -225,15 +225,20 @@
 }
 
 body{
-  height: 100%;
+    height: 100%;
     padding-top: 100px;
-  margin:0px;
-  background-image:url("monkey-hd-wallpaper_op_bw.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    margin:0px;
+    background-image:url("monkey-hd-wallpaper_op_bw.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .container-custom {
     margin-top: 0;
 }
+
+
+/*.card-class {*/
+    /*display: inline-block;*/
+/*}*/
